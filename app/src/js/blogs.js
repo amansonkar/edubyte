@@ -29,7 +29,7 @@ window.onload = function () {
           }
           items+="<div class='item'>"+
             "<div class='ui small image'>"+
-              "<img src='../img/"+blog_lst[i].blog_category+".jpg'>"+
+              "<img src='../category/"+blog_lst[i].blog_category+".jpg'>"+
             "</div>"+
             "<div class='content'>"+
               "<a class='header' onclick='full_article()'>"+blog_lst[i].blog_title+"</a>"+
