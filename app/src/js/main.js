@@ -40,7 +40,7 @@ function login_user() {
 
 function register_user() {
   var register = new XMLHttpRequest();
-  register.open('POST', 'https://auth.beehive82.hasura-app.io//signup', true);
+  register.open('POST', 'https://auth.beehive82.hasura-app.io/signup', true);
   register.onreadystatechange = function () {
     if (register.readyState === XMLHttpRequest.DONE) {
 
