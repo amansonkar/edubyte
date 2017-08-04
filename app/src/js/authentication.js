@@ -7,7 +7,7 @@ function login_user() {
       if (login.status === 200) {
         console.log(login.responseText);
         console.log('Login Successfully');
-        window.location.href = '/blogs';
+        window.location.href = '/';
       } else {
         console.log(login.status)
         console.log('Login failed');
@@ -35,7 +35,7 @@ function register_user() {
       if (register.status === 200) {
         console.log(register.responseText);
         console.log('Registered Successfully');
-        window.location.href = '/test';
+        window.location.href = '/authentication';
       } else {
         console.log('Registered failed');
         document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';

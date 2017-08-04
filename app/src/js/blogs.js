@@ -35,9 +35,9 @@ window.onload = function () {
               "<a class='header' onclick='full_article()'>"+blog_lst[i].blog_title+"</a>"+
               "<div class='meta'>"+
                 "<a>"+blog_lst[i].date_created+"</a>"+
-                "<a>Category</a>"+
+                "<a>"+blog_lst[i].blog_category+"</a>"+
               "</div>"+
-              "<div class='description'>"+blog_lst[i].blog_content.slice(0,50)+
+              "<div class='description'>"+blog_lst[i].blog_content.slice(0,150)+
               "</div>"+
               "<div class='extra'>"+
                 "<div class='ui right floated primary button' onclick='blog_full()'>"+
@@ -71,7 +71,4 @@ window.onload = function () {
       }
     }
   ));
-}
-
-function full_article() {
 }
