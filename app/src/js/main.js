@@ -15,13 +15,13 @@ function login_user() {
   login.open('POST', 'https://auth.beehive82.hasura-app.io/login', true);
   login.onreadystatechange = function () {
     if (login.readyState === XMLHttpRequest.DONE) {
-      console.log(login.responseText);
+      console.log(login.status);
       if (login.status === 200) {
         console.log(login.responseText);
         console.log('Login Successfully');
         window.location.href = '/';
       } else {
-        console.log(login.status);
+
         console.log('Login failed');
         document.getElementById('error').innerHTML = 'Login Credentials are not Correct';
         document.getElementById('login_btn').value = 'Log In';

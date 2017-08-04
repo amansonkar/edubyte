@@ -37,7 +37,7 @@ window.onload = function () {
                 "<a>"+blog_lst[i].date_created+"</a>"+
                 "<a>"+blog_lst[i].blog_category+"</a>"+
               "</div>"+
-              "<div class='description'>"+blog_lst[i].blog_content.slice(0,150)+
+              "<div class='description'>"+blog_lst[i].blog_content.slice(0,150)+"...."
               "</div>"+
               "<div class='extra'>"+
                 "<div class='ui right floated primary button' onclick='blog_full()'>"+
