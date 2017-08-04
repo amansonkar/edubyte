@@ -51,17 +51,18 @@ function register_user() {
       } else {
         console.log('Registered failed');
         document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
-        document.getElementById('login_btn').value = 'Register';
+        document.getElementById('register_btn').value = 'Register';
       }
     }
   };
 
   var username = document.getElementById('user').value;
+  var mobile = document.getElementById('user_mobile').value;
   var email = document.getElementById('user_email').value;
   var password = document.getElementById('user_password').value;
   register.withCredentials = true;
   register.setRequestHeader('Content-type', 'application/json');
-  console.log(JSON.stringify({ username: username,email:email , password: password }));
-  register.send(JSON.stringify({ username: username,email:email , password: password }));
-  document.getElementById('login_btn').innerHTML = 'Signing in...';
+  console.log(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
+  register.send(JSON.stringify({ username: username, email: email, password: password }));
+  document.getElementById('register_btn').innerHTML = 'Signing in...';
 };

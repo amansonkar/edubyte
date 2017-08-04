@@ -95,7 +95,7 @@
           <input id="password" type="password" placeholder="Password">
           <p id="error"></p>
           <a onclick="forgot_password()" href="#" style="margin-left:10px">Forgot password ?</a>
-          <button onclick="login_user()" type="submit" class="btn btn-primary" style="position:absolute;right:50px">Sign In</button>
+          <button id="login_btn" onclick="login_user()" type="submit" class="btn btn-primary" style="position:absolute;right:50px">Sign In</button>
         </form>
         <hr style="margin:100px 0 40px 0">
         <!--<span style="background-color: #749ea8;border:2px solid rgba(255, 255, 255, .5);border-radius:100%;padding:10px;position:relative;top:-60px;margin:0 40%">OR</span>
@@ -119,9 +119,10 @@
         <form id="rg">
           <input id="user"  type="text"  placeholder="Username">
           <input id="user_email" type="email"  placeholder="Email">
+          <input id="user_mobile" type="number"  placeholder="Mobile">
           <input id="user_password" type="password" placeholder="Password">
           <!--<input id="cpassword" type="password" placeholder="Confirm Password">-->
-          <button onclick="register_user()" type="submit" class="btn btn-primary" style="position:relative;margin:20px 32%">Register</button>
+          <button id="register_btn" onclick="register_user()" type="submit" class="btn btn-primary" style="position:relative;margin:20px 32%">Register</button>
         </form>
         <hr style="margin:40px 0">
         <span style="position:relative;top:-30px;margin:0 25%">Already have an Account?</span>
