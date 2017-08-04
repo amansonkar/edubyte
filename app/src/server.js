@@ -42,6 +42,46 @@ app.get('/js/main.js', function (req, res) {
   res.sendFile(path.join(root,'js/main.js'));
 });
 
+app.get('/category/science.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/science.jpg'));
+});
+
+app.get('/category/sports.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/sports.jpg'));
+});
+
+app.get('/category/technology.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/technology.jpg'));
+});
+
+app.get('/category/world.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/world.jpg'));
+});
+
+app.get('/category/programming.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/programming.jpg'));
+});
+
+app.get('/category/nature.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/nature.jpg'));
+});
+
+app.get('/category/entertainment.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/entertainment.jpg'));
+});
+
+app.get('/category/culture.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/culture.jpg'));
+});
+
+app.get('/category/business.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/business.jpg'));
+});
+
+app.get('/category/politics.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/politics.jpg'));
+});
+
 app.get('/img/image.jpg', function (req, res) {
   res.sendFile(path.join(root,'/img/image.jpg'));
 });
