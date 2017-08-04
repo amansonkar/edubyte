@@ -8,14 +8,15 @@ var logger = require('morgan');
 
 var app = express();
 
-//your routes here
 var root = process.cwd();
 
-//set Public Folder
+// set Public Folder
 app.use('/static',express.static(path.join(root)));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// your routes here
 
 app.get('/', function (req, res) {
   res.sendFile('html/blogs.html', { root });
