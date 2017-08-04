@@ -19,7 +19,7 @@ function login_user() {
       if (login.status === 200) {
         console.log(login.responseText);
         console.log('Login Successfully');
-        window.location.href = '/';
+        //window.location.href = '/';
       } else {
 
         console.log('Login failed');
@@ -48,7 +48,7 @@ function register_user() {
         alert('Registered Successfully')
         console.log(register.responseText);
         console.log('Registered Successfully');
-        window.location.href = '/authentication';
+        //window.location.href = '/authentication';
       } else {
         console.log('Register failed');
         document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
