@@ -28,7 +28,7 @@ window.onload = function () {
             blog_image= image;
           }
           items+="<div class=item>"+
-            "<div class=ui small image>"+
+            "<div class=ui tiny image>"+
               "<img src=../img/image.jpg>"+
             "</div>"+
             "<div class=content>"+
