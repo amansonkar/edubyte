@@ -37,6 +37,10 @@ app.get('/js/authentication.js', function (req, res) {
   res.sendFile(path.join(root,'js/authentication.js'));
 });
 
+app.get('/img/image.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/img/image.jpg'));
+});
+
 app.get('/img/img_1.jpg', function (req, res) {
   res.sendFile(path.join(root,'/img/img_1.jpg'));
 });
