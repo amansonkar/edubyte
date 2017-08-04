@@ -1,8 +1,10 @@
+var blog_id;
 function auth_page() {
   window.location.href = '/authentication';
 }
 
 function blog_full() {
+  cookies.set('blog_id',blog_lst[i].blog_id);
   window.location.href = '/blog';
 }
 
