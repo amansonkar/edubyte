@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .blog_image{
+      position:relative;
+      opacity:0.70;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-image: url(https://semantic-ui.com/examples/assets/images/wireframe/image.png);
+      min-height: 400px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Inline|Cabin+Sketch:400,700|Faster+One|Megrim|Rye|Shojumaru|Syncopate:400,700|Vampiro+One|Vast+Shadow" rel="stylesheet">
+</head>
+<body>
+  <header class="ui blue inverted fixed menu">
+    <div class="ui container" style="padding-left:20px">
+      <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
+    </div>
+    <div class="ui container" style="width:200px">
+      <div class="ui buttons" style="margin:10px 0">
+        <button onclick="auth_page()" class="ui button">Log In</button>
+        <div class="or"></div>
+        <button onclick="auth_page()" class="ui positive button">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="ui container" style="min-height:540px;margin-top:5em;margin-bottom:1em">
+    <div class="ui segment" style="padding:0;">
+
+      <div class="image blog_image">
+
+      </div>
+      <div class="content" style="margin-top:25px">
+        <div class="description">
+          <img class="ui wireframe image" style="width:100%" src="https://semantic-ui.com/images/wireframe/paragraph.png">
+        </div>
+      </div>
+
+      <div class="ui segment extra content" style="padding:1em 0">
+
+        <div class="ui centered divided grid">
+
+          <div class="right floated left aligned six wide column">
+
+              <span class="right floated">
+                <i class="heart outline like icon"></i>
+                17 likes
+              </span>
+
+          </div>
+
+          <div class="left floated right aligned six wide column">
+
+            <i class="comment icon"></i>
+            3 comments
+
+          </div>
+
+        </div>
+
+        <div class="ui inverted divider"></div>
+
+        <div class="ui fluid large transparent left icon input" style="margin:0 1em">
+          <i class="heart outline icon"></i>
+          <input type="text" placeholder="Add Comment...">
+        </div>
+
+      </div>
+
+      <div class="ui comments" style="margin:0 auto">
+        <div class="comment">
+          <a class="avatar">
+            <img src="/images/avatar/small/matt.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Matt</a>
+            <div class="metadata">
+              <span class="date">Today at 5:42PM</span>
+            </div>
+            <div class="text">
+              How artistic!
+            </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="/images/avatar/small/elliot.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Elliot Fu</a>
+            <div class="metadata">
+              <span class="date">Yesterday at 12:30AM</span>
+            </div>
+            <div class="text">
+              <p>This has been very useful for my research. Thanks as well!</p>
+            </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+          <div class="comments">
+            <div class="comment">
+              <a class="avatar">
+                <img src="/images/avatar/small/jenny.jpg">
+              </a>
+              <div class="content">
+                <a class="author">Jenny Hess</a>
+                <div class="metadata">
+                  <span class="date">Just now</span>
+                </div>
+                <div class="text">
+                  Elliot you are always so right :)
+                </div>
+                <div class="actions">
+                  <a class="reply">Reply</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="/images/avatar/small/joe.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Joe Henderson</a>
+            <div class="metadata">
+              <span class="date">5 days ago</span>
+            </div>
+            <div class="text">
+              Dude, this is awesome. Thanks so much
+            </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui center aligned container">
+      <div class="ui stackable inverted divided grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">Group 1</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Link One</a>
+            <a href="#" class="item">Link Two</a>
+            <a href="#" class="item">Link Three</a>
+            <a href="#" class="item">Link Four</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Group 2</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Link One</a>
+            <a href="#" class="item">Link Two</a>
+            <a href="#" class="item">Link Three</a>
+            <a href="#" class="item">Link Four</a>
+          </div>
+        </div>
+        <div class="seven wide right floated column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+        </div>
+      </div>
+      <div class="ui inverted section divider"></div>
+      <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
+      <div class="ui horizontal inverted small divided link list">
+        <a class="item" href="#">Site Map</a>
+        <a class="item" href="#">Contact Us</a>
+        <a class="item" href="#">Terms and Conditions</a>
+        <a class="item" href="#">Privacy Policy</a>
+      </div>
+      <div class="ui horizontal inverted small">
+        <span>
+          Made with <i class="heart red icon"></i> with Hasura
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.js"></script>
+  <script src="../js/blogs.js" type="text/javascript"></script>
+
+</body>
+</html>

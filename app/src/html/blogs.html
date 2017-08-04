@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Inline|Cabin+Sketch:400,700|Faster+One|Megrim|Rye|Shojumaru|Syncopate:400,700|Vampiro+One|Vast+Shadow" rel="stylesheet">
+</head>
+<body>
+  <header class="ui blue inverted fixed menu">
+    <div class="ui container" style="padding-left:20px">
+      <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
+    </div>
+    <div class="ui container" style="width:200px">
+      <div class="ui buttons" style="margin:10px 0">
+        <button onclick="auth_page()" class="ui button">Log In</button>
+        <div class="or"></div>
+        <button onclick="auth_page()" class="ui positive button">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="content" class="ui segment" style="margin-top:5em">
+
+    <!--div class="ui right internal rail">
+      <div class="ui sticky" style="width: 272px !important; height: 261.925px !important; left: 1164.6px;">
+        <div class="ui fluid category search">
+          <div class="ui icon input">
+            <input class="prompt" type="text" placeholder="Search here...">
+            <i class="search icon"></i>
+          </div>
+          <div class="results"></div>
+        </div>
+        <div class="ui medium image">
+          <img src="../img/img_5.jpg">
+        </div>
+      </div>
+    </div-->
+
+    <div class="ui container" style="min-height:381px">
+      <div id="blog_loader" class="ui active inverted dimmer" style="z-index:100">
+        <div class="ui larger text loader">Loading</div>
+      </div>
+      <div id="child" class="ui relaxed divided items">
+
+        <div class="item">
+          <div class="ui small image">
+            <img src="https://semantic-ui.com/examples/assets/images/wireframe/image.png">
+          </div>
+          <div class="content">
+            <a class="header">Content Header</a>
+            <div class="meta">
+              <a>Date</a>
+              <a>Category</a>
+            </div>
+            <div class="description">
+              <img src="https://semantic-ui.com/examples/assets/images/wireframe/short-paragraph.png" class="ui wireframe image">
+            </div>
+            <div class="extra">
+              <div class="ui right floated primary button">
+                Read more
+                <i class="right chevron icon"></i>
+              </div>
+              <img src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png" class="ui circular avatar image"> Username
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="ui small image">
+            <img src="https://semantic-ui.com/examples/assets/images/wireframe/image.png">
+          </div>
+          <div class="content">
+            <a class="header">Content Header</a>
+            <div class="meta">
+              <a>Date</a>
+              <a>Category</a>
+            </div>
+            <div class="description">
+              <img src="https://semantic-ui.com/examples/assets/images/wireframe/short-paragraph.png" class="ui wireframe image">
+            </div>
+            <div class="extra">
+              <div class="ui right floated primary button">
+                Read more
+                <i class="right chevron icon"></i>
+              </div>
+              <img src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png" class="ui circular avatar image"> Username
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ui black inverted vertical footer segment ">
+    <div class="ui center aligned container">
+      <div class="ui stackable inverted grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">Group 1</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Link One</a>
+            <a href="#" class="item">Link Two</a>
+            <a href="#" class="item">Link Three</a>
+            <a href="#" class="item">Link Four</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Group 2</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Link One</a>
+            <a href="#" class="item">Link Two</a>
+            <a href="#" class="item">Link Three</a>
+            <a href="#" class="item">Link Four</a>
+          </div>
+        </div>
+        <div class="seven wide right floated column">
+          <h4 class="ui inverted teal header">Help Preserve This Project</h4>
+          <p> Support for the continued development of Semantic UI comes directly from the community.</p>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="7ZAF2Q8DBZAQL">
+            <button type="submit" class="ui large teal button">Donate Today</button>
+          </form>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p> action inside the footer that could help re-engage users.</p>
+        </div>
+      </div>
+      <div class="ui inverted section divider"></div>
+      <div class="ui container">
+        <a href="/" style="font-family:'Shojumaru', cursive;font-size:50px">edubyte</a>
+      </div>
+
+      <div class="ui horizontal inverted small divided link list">
+        <a class="item" href="#">Site Map</a>
+        <a class="item" href="#">Contact Us</a>
+        <a class="item" href="#">Terms and Conditions</a>
+        <a class="item" href="#">Privacy Policy</a>
+      </div>
+
+      <div class="ui horizontal inverted small">
+        <span>
+          Made with <i class="heart red icon"></i> with Hasura
+        </span>
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.js"></script>
+  <script src="../js/blogs.js" type="text/javascript"></script>
+</body>
+</html>
