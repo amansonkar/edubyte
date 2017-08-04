@@ -27,24 +27,24 @@ window.onload = function () {
           if(blog_lst[i].blog_catgory){
             blog_image= image;
           }
-          items+="<div class=item>"+
+          items+="<div class='item'>"+
             "<div class='ui small image'>"+
-              "<img src=../img/image.jpg>"+
+              "<img src='../img/image.jpg'>"+
             "</div>"+
-            "<div class=content>"+
-              "<a class=header onclick=full_article()>"+blog_lst[i].blog_title+"</a>"+
-              "<div class=meta>"+
+            "<div class='content'>"+
+              "<a class='header' onclick='full_article()'>"+blog_lst[i].blog_title+"</a>"+
+              "<div class='meta'>"+
                 "<a>"+blog_lst[i].date_created+"</a>"+
                 "<a>Category</a>"+
               "</div>"+
-              "<div class=description>"+blog_lst[i].blog_content.slice(0,50)+
+              "<div class='description'>"+blog_lst[i].blog_content.slice(0,50)+
               "</div>"+
-              "<div class=extra>"+
-                "<div class=ui right floated primary button onclick=blog_full()>"+
+              "<div class='extra'>"+
+                "<div class='ui right floated primary button' onclick='blog_full()'>"+
                   "Read more"+
-                  "<i class=right chevron icon></i>"+
+                  "<i class='right chevron icon'></i>"+
                 "</div>"+
-                "<img src=https://semantic-ui.com/examples/assets/images/wireframe/square-image.png class=ui circular avatar image>"+
+                "<img src='https://semantic-ui.com/examples/assets/images/wireframe/square-image.png' class='ui circular avatar image'>"+
                  +blog_lst[i].user_id+
               "</div>"+
             "</div>"+
