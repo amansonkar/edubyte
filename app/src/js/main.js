@@ -43,13 +43,14 @@ function register_user() {
   register.open('POST', 'https://auth.beehive82.hasura-app.io/signup', true);
   register.onreadystatechange = function () {
     if (register.readyState === XMLHttpRequest.DONE) {
-
+      console.log(register.responseText);
       if (register.status === 200) {
+        alert('Registered Successfully')
         console.log(register.responseText);
         console.log('Registered Successfully');
         window.location.href = '/authentication';
       } else {
-        console.log('Registered failed');
+        console.log('Register failed');
         document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
         document.getElementById('register_btn').value = 'Register';
       }
@@ -63,6 +64,6 @@ function register_user() {
   register.withCredentials = true;
   register.setRequestHeader('Content-type', 'application/json');
   console.log(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
-  register.send(JSON.stringify({ username: username, email: email, password: password }));
+  register.send(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
   document.getElementById('register_btn').innerHTML = 'Signing in...';
 };
