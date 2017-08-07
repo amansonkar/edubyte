@@ -30,14 +30,6 @@ app.get('/authentication', function (req, res) {
   res.sendFile('html/auth.html', { root });
 });
 
-app.get('/js/blogs.js', function (req, res) {
-  res.sendFile(path.join(root,'js/blogs.js'));
-});
-
-app.get('/js/blog.js', function (req, res) {
-  res.sendFile(path.join(root,'js/blog.js'));
-});
-
 app.get('/js/main.js', function (req, res) {
   res.sendFile(path.join(root,'js/main.js'));
 });
