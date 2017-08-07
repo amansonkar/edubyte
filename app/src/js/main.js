@@ -77,7 +77,7 @@ function fetch_blogs() {
   ));
 };
 
-function () {
+function fetch_blog() {
   var fetchblog = new XMLHttpRequest();
   var blog_full;
   var blg_full = document.getElementById('blog_full');
