@@ -7,59 +7,144 @@ window.onload = function () {
 
       if (fetchblog.status === 200) {
         console.log(fetchblog.responseText);
-        var items;
+        var item;
         blog_full=JSON.parse(this.responseText);
-        console.log(blogs_full);
-        var blog_lst = blogs_full;
-        var n = blog_lst.length;
+        console.log(blog_full);
+        var blog_lst = blog_full;
 
-        for(var i=0;i<n;i++){
-          var blog_image;
-          if(blog_lst[i].blog_catgory){
-            blog_image= image;
-          }
-          items+="<div class='item'>"+
-            "<div class='ui small image'>"+
-              "<img src='../category/"+blog_lst[i].blog_category+".jpg'>"+
+        item="<div class='image blog_image' style='background-image: url(../category/"+blog_lst[0].blog_category+".jpg)'>"+
+          "<div class='ui huge header' style='font-size:7em'>"+blog_lst[0].blog_title+"</div>"+
+          "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].blog_category+"</span>"+"</div>"+
+        "</div>"+
+        "<div class='content' style='margin-top:25px'>"+
+          "<div class='description' style='font-size:2em;padding:1em'>"+
+            "<p>"+blog_lst[0].blog_content+"</p>"+
+          "</div>"+
+        "</div>"+
+
+        "<div class='ui segment extra content' style='padding:1em 0'>"+
+
+          "<div class='ui centered divided grid'>"+
+
+            "<div class='right floated left aligned six wide column'>"+
+
+                "<span class='right floated'>"+
+                  "<i class='heart outline like icon'></i>"+
+                  "17 likes"+
+                "</span>"+
             "</div>"+
+
+            "<div class='left floated right aligned six wide column'>"+
+
+              "<i class='comment icon'></i>"+
+              "3 comments"+
+
+            "</div>"+
+
+          "</div>"+
+
+          "<div class='ui inverted divider'></div>"+
+
+          "<div class='ui fluid large transparent left icon input' style='margin:0 1em'>"+
+            "<i class='heart outline icon'></i>"+
+            "<input type='text' placeholder='Add Comment...'>"+
+          "</div>"+
+
+        "</div>"+
+
+        "<div class='ui comments' style='margin:0 auto'>"+
+          "<div class='comment'>"+
+            "<a class='avatar'>"+
+              "<img src='/images/avatar/small/matt.jpg'>"+
+            "</a>"+
             "<div class='content'>"+
-              "<a class='header' onclick='full_article()'>"+blog_lst[i].blog_title+"</a>"+
-              "<div class='meta'>"+
-                "<a>"+blog_lst[i].date_created+"</a>"+
-                "<a>"+blog_lst[i].blog_category+"</a>"+
+              "<a class='author'>Matt</a>"+
+              "<div class='metadata'>"+
+                "<span class='date'>Today at 5:42PM</span>"+
               "</div>"+
-              "<div class='description'>"+blog_lst[i].blog_content.slice(0,150)+
+              "<div class='text'>"+
+                "How artistic!"+
               "</div>"+
-              "<div class='extra'>"+
-                "<div class='ui right floated primary button' onclick='blog_full()'>"+
-                  "Read more"+
-                  "<i class='right chevron icon'></i>"+
-                "</div>"+
-                "<img src='https://semantic-ui.com/examples/assets/images/wireframe/square-image.png' class='ui circular avatar image'>"+
-                 +blog_lst[i].user_id+
+              "<div class='actions'>"+
+                "<a class='reply'>Reply</a>"+
               "</div>"+
             "</div>"+
-          "</div>"
-        }
-        blg.innerHTML = items;
+          "</div>"+
+          "<div class='comment'>"+
+            "<a class='avatar'>"+
+              "<img src='/images/avatar/small/matt.jpg'>"+
+            "</a>"+
+            "<div class='content'>"+
+              "<a class='author'>Matt</a>"+
+              "<div class='metadata'>"+
+                "<span class='date'>Today at 5:42PM</span>"+
+              "</div>"+
+              "<div class='text'>"+
+                "How artistic!"+
+              "</div>"+
+              "<div class='actions'>"+
+                "<a class='reply'>Reply</a>"+
+              "</div>"+
+            "</div>"+
+          "</div>"+
+          "<div class='comment'>"+
+            "<a class='avatar'>"+
+              "<img src='/images/avatar/small/matt.jpg'>"+
+            "</a>"+
+            "<div class='content'>"+
+              "<a class='author'>Matt</a>"+
+              "<div class='metadata'>"+
+                "<span class='date'>Today at 5:42PM</span>"+
+              "</div>"+
+              "<div class='text'>"+
+                "How artistic!"+
+              "</div>"+
+              "<div class='actions'>"+
+                "<a class='reply'>Reply</a>"+
+              "</div>"+
+            "</div>"+
+          "</div>"+
+          "<div class='comment'>"+
+            "<a class='avatar'>"+
+              "<img src='/images/avatar/small/matt.jpg'>"+
+            "</a>"+
+            "<div class='content'>"+
+              "<a class='author'>Matt</a>"+
+              "<div class='metadata'>"+
+                "<span class='date'>Today at 5:42PM</span>"+
+              "</div>"+
+              "<div class='text'>"+
+                "How artistic!"+
+              "</div>"+
+              "<div class='actions'>"+
+                "<a class='reply'>Reply</a>"+
+              "</div>"+
+            "</div>"+
+          "</div>"+
+        "</div>";
+
+        blg_full.innerHTML = item;
       } else {
         console.log(fetchblogs.responseText);
-        document.getElementById("blog_loader").className = "hidden";
-        blg.innerHTML = 'No more blogs available';
+        alert('some error occured');
       }
     }
   };
 
-  fetchblogs.open('POST', 'https://data.beehive82.hasura-app.io/v1/query', true);
-  fetchblogs.setRequestHeader('Content-type', 'application/json');
-  fetchblogs.send(JSON.stringify(
+  fetchblog.open('POST', 'https://data.beehive82.hasura-app.io/v1/query', true);
+  fetchblog.setRequestHeader('Content-type', 'application/json');
+  fetchblog.send(JSON.stringify(
     {
-      "type": "select",
-      "args": {
+    "type": "select",
+    "args": {
         "table": "blogs",
-        "columns": ["*"],
-        "order_by": ["-date_created"]
-      }
+        "columns": [
+            "*"
+        ],
+        "where":{
+            "blog_id": Cookies.get('blog_id')
+        }
     }
+}
   ));
 }

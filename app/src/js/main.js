@@ -1,21 +1,10 @@
-function navigate_home() {
-  window.location.href = '/blogs';
-}
-
-function navigate_auth() {
-  window.location.href = '/authentication';
-}
-
-function functionName() {
-
-}
-
 function login_user() {
   var login = new XMLHttpRequest();
-  login.open('POST', 'https://auth.beehive82.hasura-app.io/login', true);
+
   login.onreadystatechange = function () {
+
     if (login.readyState === XMLHttpRequest.DONE) {
-      console.log(login.status);
+      console.log(login.readyState);
       if (login.status === 200) {
         console.log(login.responseText);
         console.log('Login Successfully');
@@ -27,10 +16,11 @@ function login_user() {
         document.getElementById('login_btn').value = 'Log In';
       }
     }
-  };
+  }
 
   var username = document.getElementById('username').value;
   var password = document.getElementById('password').value;
+  login.open('POST', 'https://auth.beehive82.hasura-app.io/login', false);
   login.withCredentials = true;
   login.setRequestHeader('Content-type', 'application/json');
   console.log(JSON.stringify({ username: username, password: password }));
@@ -40,7 +30,6 @@ function login_user() {
 
 function register_user() {
   var register = new XMLHttpRequest();
-  register.open('POST', 'https://auth.beehive82.hasura-app.io/signup', true);
   register.onreadystatechange = function () {
     if (register.readyState === XMLHttpRequest.DONE) {
       console.log(register.status);
@@ -55,15 +44,15 @@ function register_user() {
         document.getElementById('register_btn').value = 'Register';
       }
     }
-  };
+  }
 
   var username = document.getElementById('user').value;
   var mobile = document.getElementById('user_mobile').value;
   var email = document.getElementById('user_email').value;
   var password = document.getElementById('user_password').value;
+  register.open('POST', 'https://auth.beehive82.hasura-app.io/signup', false);
   register.withCredentials = true;
   register.setRequestHeader('Content-type', 'application/json');
-  console.log(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
   register.send(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
   document.getElementById('register_btn').innerHTML = 'Signing in...';
 };

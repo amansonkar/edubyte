@@ -1,10 +1,15 @@
-var blog_id;
-function auth_page() {
+//var blog_id;
+function navigate_home() {
+  window.location.href = '/blogs';
+}
+
+function navigate_auth() {
   window.location.href = '/authentication';
 }
 
-function blog_full() {
-  cookies.set('blog_id',blog_lst[i].blog_id);
+
+function blog_full(b_id) {
+  Cookies.set('blog_id',b_id);
   window.location.href = '/blog';
 }
 
@@ -34,7 +39,7 @@ window.onload = function () {
               "<img src='../category/"+blog_lst[i].blog_category+".jpg'>"+
             "</div>"+
             "<div class='content'>"+
-              "<a class='header' onclick='full_article()'>"+blog_lst[i].blog_title+"</a>"+
+              "<a class='header' onclick=blog_full("+blog_lst[i].blog_id+")>"+blog_lst[i].blog_title+"</a>"+
               "<div class='meta'>"+
                 "<a>"+blog_lst[i].date_created+"</a>"+
                 "<a>"+blog_lst[i].blog_category+"</a>"+
@@ -42,7 +47,7 @@ window.onload = function () {
               "<div class='description'>"+blog_lst[i].blog_content.slice(0,150)+
               "</div>"+
               "<div class='extra'>"+
-                "<div class='ui right floated primary button' onclick='blog_full()'>"+
+                "<div class='ui right floated primary button' onclick=blog_full("+blog_lst[i].blog_id+")>"+
                   "Read more"+
                   "<i class='right chevron icon'></i>"+
                 "</div>"+
@@ -59,7 +64,7 @@ window.onload = function () {
         blg.innerHTML = 'No more blogs available';
       }
     }
-  };
+  }
 
   fetchblogs.open('POST', 'https://data.beehive82.hasura-app.io/v1/query', true);
   fetchblogs.setRequestHeader('Content-type', 'application/json');

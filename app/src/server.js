@@ -27,19 +27,23 @@ app.get('/blog', function (req, res) {
 });
 
 app.get('/authentication', function (req, res) {
-  res.sendFile('html/authentication.html', { root });
+  res.sendFile('html/auth.html', { root });
 });
 
 app.get('/js/blogs.js', function (req, res) {
   res.sendFile(path.join(root,'js/blogs.js'));
 });
 
-app.get('/js/authentication.js', function (req, res) {
-  res.sendFile(path.join(root,'js/authentication.js'));
+app.get('/js/blog.js', function (req, res) {
+  res.sendFile(path.join(root,'js/blog.js'));
 });
 
 app.get('/js/main.js', function (req, res) {
   res.sendFile(path.join(root,'js/main.js'));
+});
+
+app.get('/js/js.cookie.js', function (req, res) {
+  res.sendFile(path.join(root,'js/js.cookie.js'));
 });
 
 app.get('/category/science.jpg', function (req, res) {
@@ -120,10 +124,6 @@ app.get('/img/logo_2.jpg', function (req, res) {
 
 app.get('/img/logo_3.png', function (req, res) {
   res.sendFile(path.join(root,'/img/logo_3.png'));
-});
-
-app.get('/register', function (req, res) {
-  res.send('Register page');
 });
 
 /*app.post('/login', function (req, res) {
