@@ -1,6 +1,5 @@
 function login_user() {
   document.getElementById('login_btn').innerHTML = 'Logging in...';
-  var username;
   var login = new XMLHttpRequest();
 
   login.onreadystatechange = function () {
@@ -8,8 +7,8 @@ function login_user() {
       if (login.status === 200) {
 
         //window.location.href = '/';
-        Cookies.set('hasura_username', username);
         Cookies.set('edubyte', login.responseText);
+        Cookies.set('hasura_username', username);
         console.log(Cookies.get('edubyte'));
         alert('Login Successfully');
         window.location.href = 'https://app.antecedent20.hasura-app.io';
@@ -22,7 +21,7 @@ function login_user() {
     }
   }
 
-  username = document.getElementById('username').value;
+  var username = document.getElementById('username').value;
   var password = document.getElementById('password').value;
   login.open('POST', 'https://auth.antecedent20.hasura-app.io/login', false);
   login.withCredentials = true;
@@ -32,12 +31,14 @@ function login_user() {
 };
 
 function register_user() {
+  var name;
   var register = new XMLHttpRequest();
   register.onreadystatechange = function () {
     if (register.readyState === XMLHttpRequest.DONE) {
       if (register.status === 200) {
-        alert('Registered Successfully')
         console.log(register.responseText);
+        var list = JSON.parse(responseText);
+        add_user_profile(list,name);
         window.location.reload();
       } else {
         console.log('Register failed');
@@ -47,6 +48,7 @@ function register_user() {
     }
   }
 
+  var name = document.getElementById('name').value;
   var username = document.getElementById('user').value;
   var mobile = document.getElementById('user_mobile').value;
   var email = document.getElementById('user_email').value;
@@ -57,3 +59,38 @@ function register_user() {
   register.send(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
   document.getElementById('register_btn').innerHTML = 'Signing in...';
 };
+
+function add_user_profile(list,name) {
+  var update = new XMLHttpRequest();
+  update.onreadystatechange = function () {
+    if (update.readyState === XMLHttpRequest.DONE) {
+      if (update.status === 200) {
+        alert('Registered Successfully');
+        console.log(update.responseText);
+      } else {
+        console.log('Update failed');
+        document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
+        document.getElementById('register_btn').value = 'Register';
+        alert("register with different email and mobile");
+      }
+    }
+  }
+  var bearer = "Bearer ";
+  bearer += list.auth_token;
+  update.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', false);
+  update.withCredentials = true;
+  update.setRequestHeader('Content-type', 'application/json');
+  update.setRequestHeader('Authorization', bearer);
+  update.send(JSON.stringify(
+    {
+      "type": "insert",
+      "args": {
+        "table": "user_profile",
+        "objects": [{
+          "user_id": list.hasura_id,
+          "name": name
+        }]
+      }
+    }
+  ));
+}

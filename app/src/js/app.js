@@ -269,6 +269,7 @@ function add_comment(){
   "</div>"+"<div class='ui divider'></div>"+comments;
   document.getElementById('comment_s').innerHTML = comments;
   $('#comment_s').transition('slide down');
+
 };
 
 function publish_blog() {
