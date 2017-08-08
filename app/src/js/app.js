@@ -6,11 +6,15 @@ function check_login() {
       "<div>"+loggedin_user+"</div>"+
       "<div class='menu'>"+
         "<div class='item'>View Profile</div>"+
-        "<div class='item'>Publish Blog</div>"+
+        "<div onclick='add_blog_modal()' class='item'>Publish Blog</div>"+
         "<div onclick='log_out()' class='item'>Sign Out <i class='power icon red'></i></div>"+
       "</div>"+
     "</div>";
   }
+};
+
+function add_blog_modal(){
+  $('.ui.modals').modal('show');
 };
 
 function log_out() {
