@@ -187,9 +187,12 @@
   <script src="../js/app.js" type="text/javascript"></script>
   <script>
   check_login();
+  $('.ui.modals').modal('hide');
   $('.ui.dropdown').dropdown();
   fetch_blogs();
-  $('.ui.modals').modal('hide');
+  $('#add_blog').click(function(){
+    $('.ui.modals').modal('show');
+  });
   </script>
 
 </body>
