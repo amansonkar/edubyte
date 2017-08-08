@@ -7,7 +7,7 @@ function login_user() {
       if (login.status === 200) {
 
         //window.location.href = '/';
-        Cookies.set('hasura_username', username, { expires: 1 });
+        Cookies.set('hasura_username', username);
         Cookies.set('edubyte', login.responseText);
         console.log(Cookies.get('edubyte'));
         alert('Login Successfully');

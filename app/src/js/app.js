@@ -14,7 +14,7 @@ function check_login() {
 };
 
 function add_blog_modal(){
-  $('.ui.modals').modal('show');
+  $('.ui.long.modal').modal('show');
 };
 
 function log_out() {
@@ -26,7 +26,7 @@ function log_out() {
         console.log(logout_req.responseText);
         Cookies.remove('edubyte');
         Cookies.remove('hasura_username');
-        window.location.href = '/';
+        window.location.reload();
       } else {
         console.log('Request failed');
       }
@@ -270,5 +270,48 @@ function fetch_blog() {
         }
     }
 }
+  ));
+};
+
+function publish_blog() {
+  var publish = new XMLHttpRequest();
+  publish.onreadystatechange = function () {
+    if (publish.readyState === XMLHttpRequest.DONE) {
+      if (publish.status === 200) {
+        alert("Blog Published Successfully");
+        //console.log(fetchblogs.responseText);
+        var items="";
+        blogs_all=JSON.parse(this.responseText);
+        window.location.reload();
+      } else {
+        console.log(this.responseText);
+        document.getElementById("blog_loader").className = "hidden";
+        blg.innerHTML = 'No more blogs available';
+      }
+    }
+  }
+  var Bearer = "Bearer ";
+  var hasura = JSON.parse(Cookies.get('edubyte'));
+  Bearer+= hasura.auth_token;
+  category = document.getElementById('blog_category_select').value;
+  title = document.getElementById('blog_title_text').value;
+  content = document.getElementById('blog_content_text').value;
+
+  publish.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
+  publish.setRequestHeader('Content-type', 'application/json');
+  publish.setRequestHeader('Authorization',Bearer);
+  publish.send(JSON.stringify(
+    {
+    	"type": "insert",
+    	"args": {
+    		"table": "blogs",
+    		"objects": [{
+    			"user_id": hasura.hasura_id,
+          "blog_category": category,
+    			"blog_title": title,
+    			"blog_content": content
+    		}]
+    	}
+    }
   ));
 };
