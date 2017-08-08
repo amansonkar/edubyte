@@ -21,17 +21,34 @@
   <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Inline|Cabin+Sketch:400,700|Faster+One|Megrim|Rye|Shojumaru|Syncopate:400,700|Vampiro+One|Vast+Shadow" rel="stylesheet">
 </head>
 <body>
-  <header class="ui blue inverted fixed menu">
-    <div class="ui container" style="padding-left:20px">
+  <header class="ui borderless main menu blue inverted ">
+    <div class="ui text container">
       <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
-    </div>
-    <div id="auth_user_sec" class="ui container" style="width:200px">
-      <div  class="ui buttons " style="margin:10px 0">
-        <button onclick="navigate_auth()" class="ui button">Log In</button>
-        <div class="or"></div>
-        <button onclick="navigate_auth()" class="ui positive button">Sign Up</button>
+
+      <div id="auth_user_sec" class="ui container" style="width:200px">
+        <div  class="ui buttons " style="margin:10px 0">
+          <button onclick="navigate_auth()" class="ui button">Log In</button>
+          <div class="or"></div>
+          <button onclick="navigate_auth()" class="ui positive button">Sign Up</button>
+        </div>
       </div>
     </div>
+
+  </header>
+
+  <header class="ui borderless main menu blue inverted placeholder" style="display: none;">
+    <div class="ui text container">
+      <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
+
+      <div id="auth_user_sec" class="ui container" style="width:200px">
+        <div  class="ui buttons " style="margin:10px 0">
+          <button onclick="navigate_auth()" class="ui button">Log In</button>
+          <div class="or"></div>
+          <button onclick="navigate_auth()" class="ui positive button">Sign Up</button>
+        </div>
+      </div>
+    </div>
+
   </header>
 
   <div class="ui container" style="min-height:540px;margin-top:5em;margin-bottom:1em">
@@ -164,9 +181,9 @@
 
 
 
-  <div class="ui inverted vertical footer segment">
+  <div class="ui black inverted vertical footer segment ">
     <div class="ui center aligned container">
-      <div class="ui stackable inverted divided grid">
+      <div class="ui stackable inverted grid">
         <div class="three wide column">
           <h4 class="ui inverted header">Group 1</h4>
           <div class="ui inverted link list">
@@ -186,22 +203,80 @@
           </div>
         </div>
         <div class="seven wide right floated column">
+          <h4 class="ui inverted teal header">Help Preserve This Project</h4>
+          <p> Support for the continued development of Semantic UI comes directly from the community.</p>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="7ZAF2Q8DBZAQL">
+            <button type="submit" class="ui large teal button">Donate Today</button>
+          </form>
+        </div>
+        <div class="seven wide column">
           <h4 class="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+          <p> action inside the footer that could help re-engage users.</p>
         </div>
       </div>
       <div class="ui inverted section divider"></div>
-      <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
+      <div class="ui container">
+        <a href="/" style="font-family:'Shojumaru', cursive;font-size:50px">edubyte</a>
+      </div>
+
       <div class="ui horizontal inverted small divided link list">
         <a class="item" href="#">Site Map</a>
         <a class="item" href="#">Contact Us</a>
         <a class="item" href="#">Terms and Conditions</a>
         <a class="item" href="#">Privacy Policy</a>
       </div>
+
       <div class="ui horizontal inverted small">
         <span>
           Made with <i class="heart red icon"></i> with Hasura
         </span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ui dimmer modals page transition hidden" style="display: block !important;">
+    <div class="ui long modal test scrolling transition hidden" style="margin-top: -213.231px; display: block !important;">
+      <i class="close icon"></i>
+      <div class="header">
+        Publish Your Blogs
+      </div>
+      <div class="content">
+        <div class="ui form">
+          <div class="field">
+              <label>Choose a Category for your Blog</label>
+              <select id="blog_category_select" class="ui fluid search dropdown" name="blog[category]">
+                <option value="">Category</option>
+                <option value="1">Arts</option>
+                <option value="2">Food</option>
+                <option value="3">Motivational</option>
+                <option value="4">Movies</option>
+                <option value="5">Politics</option>
+                <option value="6">Programming</option>
+                <option value="7">Projects</option>
+                <option value="8">Sports</option>
+                <option value="9">Technology</option>
+                <option value="10">Travels</option>
+                <option value="11">General</option>
+              </select>
+          </div>
+          <div class="field">
+            <label>Choose a Title for Your Blog</label>
+            <div class="field">
+              <input id="blog_title_text" type="text" name="blog[title]" placeholder="Blog Title">
+            </div>
+          </div>
+          <div class="field">
+            <label>Blog Content</label>
+            <textarea id="blog_content_text"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui button">Cancel</div>
+        <div onclick="publish_blog()" class="ui blue button">Publish</div>
       </div>
     </div>
   </div>

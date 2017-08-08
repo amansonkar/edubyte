@@ -21,7 +21,7 @@ function add_blog_modal(){
 };
 
 function author_profile() {
-  window.location.href = '/';
+  window.location.href = '/profile';
 };
 
 function log_out() {
