@@ -1,5 +1,44 @@
+function check_login() {
+  var loggedin_user = Cookies.get('hasura_username');
+  if(loggedin_user!=Cookies.get('nothing')){
+    document.getElementById('auth_user_sec').innerHTML = "<div class='ui inline floating dropdown link item'>"+
+      "<i class='spy icon'></i>"+
+      "<div>"+loggedin_user+"</div>"+
+      "<div class='menu'>"+
+        "<div class='item'>View Profile</div>"+
+        "<div class='item'>Publish Blog</div>"+
+        "<div onclick='log_out()' class='item'>Sign Out <i class='power icon red'></i></div>"+
+      "</div>"+
+    "</div>";
+  }
+};
+
+function log_out() {
+  var logout_req = new XMLHttpRequest();
+  logout_req.onreadystatechange = function () {
+    if (logout_req.readyState === XMLHttpRequest.DONE) {
+      if (logout_req.status === 200) {
+        alert('You have logged out Successfully.')
+        console.log(logout_req.responseText);
+        Cookies.remove('edubyte');
+        Cookies.remove('hasura_username');
+        window.location.href = '/';
+      } else {
+        console.log('Request failed');
+      }
+    }
+  }
+  var Bearer = "Bearer ";
+  Bearer+=JSON.parse(Cookies.get('edubyte')).auth_token;
+
+  logout_req.open('POST', 'https://auth.antecedent20.hasura-app.io/user/logout', true);
+  logout_req.withCredentials = true;
+  logout_req.setRequestHeader('Authorization', Bearer);
+  logout_req.send(null);
+};
+
 function navigate_home() {
-  window.location.href = '/blogs';
+  window.location.href = '/';
 };
 
 function navigate_auth() {
@@ -19,8 +58,8 @@ function fetch_blogs() {
     if (fetchblogs.readyState === XMLHttpRequest.DONE) {
 
       if (fetchblogs.status === 200) {
-        console.log(fetchblogs.responseText);
-        var items;
+        //console.log(fetchblogs.responseText);
+        var items="";
         blogs_all=JSON.parse(this.responseText);
         console.log(blogs_all);
         var blog_lst = blogs_all;
@@ -49,7 +88,7 @@ function fetch_blogs() {
                   "<i class='right chevron icon'></i>"+
                 "</div>"+
                 "<img src='https://semantic-ui.com/examples/assets/images/wireframe/square-image.png' class='ui circular avatar image'>"+
-                 +blog_lst[i].user_id+
+                 blog_lst[i].published_by.name+
               "</div>"+
             "</div>"+
           "</div>"
@@ -63,14 +102,16 @@ function fetch_blogs() {
     }
   }
 
-  fetchblogs.open('POST', 'https://data.beehive82.hasura-app.io/v1/query', false);
+  fetchblogs.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
   fetchblogs.setRequestHeader('Content-type', 'application/json');
   fetchblogs.send(JSON.stringify(
     {
       "type": "select",
       "args": {
         "table": "blogs",
-        "columns": ["*"],
+        "columns": ["*",
+                            {"name":"published_by","columns":["name"]}
+                   ],
         "order_by": ["-date_created"]
       }
     }
@@ -210,7 +251,7 @@ function fetch_blog() {
     }
   };
 
-  fetchblog.open('POST', 'https://data.beehive82.hasura-app.io/v1/query', true);
+  fetchblog.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
   fetchblog.setRequestHeader('Content-type', 'application/json');
   fetchblog.send(JSON.stringify(
     {
@@ -226,63 +267,4 @@ function fetch_blog() {
     }
 }
   ));
-};
-
-function login_user() {
-  var login = new XMLHttpRequest();
-
-  login.onreadystatechange = function () {
-
-    if (login.readyState === XMLHttpRequest.DONE) {
-      console.log(login.readyState);
-      if (login.status === 200) {
-        console.log(login.responseText);
-        console.log('Login Successfully');
-        //window.location.href = '/';
-      } else {
-
-        console.log('Login failed');
-        document.getElementById('error').innerHTML = 'Login Credentials are not Correct';
-        document.getElementById('login_btn').value = 'Log In';
-      }
-    }
-  }
-
-  var username = document.getElementById('username').value;
-  var password = document.getElementById('password').value;
-  login.open('POST', 'https://auth.beehive82.hasura-app.io/login', false);
-  login.withCredentials = true;
-  login.setRequestHeader('Content-type', 'application/json');
-  console.log(JSON.stringify({ username: username, password: password }));
-  login.send(JSON.stringify({ username: username, password: password }));
-  document.getElementById('login_btn').innerHTML = 'Logging in...';
-};
-
-function register_user() {
-  var register = new XMLHttpRequest();
-  register.onreadystatechange = function () {
-    if (register.readyState === XMLHttpRequest.DONE) {
-      console.log(register.status);
-      if (register.status === 200) {
-        alert('Registered Successfully')
-        console.log(register.responseText);
-        console.log('Registered Successfully');
-        //window.location.href = '/authentication';
-      } else {
-        console.log('Register failed');
-        document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
-        document.getElementById('register_btn').value = 'Register';
-      }
-    }
-  }
-
-  var username = document.getElementById('user').value;
-  var mobile = document.getElementById('user_mobile').value;
-  var email = document.getElementById('user_email').value;
-  var password = document.getElementById('user_password').value;
-  register.open('POST', 'https://auth.beehive82.hasura-app.io/signup', false);
-  register.withCredentials = true;
-  register.setRequestHeader('Content-type', 'application/json');
-  register.send(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
-  document.getElementById('register_btn').innerHTML = 'Signing in...';
 };
