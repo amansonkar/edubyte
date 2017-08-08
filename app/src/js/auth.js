@@ -1,4 +1,5 @@
 function login_user() {
+  document.getElementById('login_btn').innerHTML = 'Logging in...';
   var username;
   var login = new XMLHttpRequest();
 
@@ -28,7 +29,6 @@ function login_user() {
   login.setRequestHeader('Content-type', 'application/json');
   console.log(JSON.stringify({ username: username, password: password }));
   login.send(JSON.stringify({ username: username, password: password }));
-  document.getElementById('login_btn').innerHTML = 'Logging in...';
 };
 
 function register_user() {

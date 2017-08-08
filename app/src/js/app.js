@@ -1,3 +1,6 @@
+var comments = "";
+
+
 function check_login() {
   var loggedin_user = Cookies.get('hasura_username');
   if(loggedin_user!=Cookies.get('nothing')){
@@ -5,7 +8,7 @@ function check_login() {
       "<i class='spy icon'></i>"+
       "<div>"+loggedin_user+"</div>"+
       "<div class='menu'>"+
-        "<div class='item'>View Profile</div>"+
+        "<div onclick='profile()' class='item'>View Profile</div>"+
         "<div onclick='add_blog_modal()' class='item'>Publish Blog</div>"+
         "<div onclick='log_out()' class='item'>Sign Out <i class='power icon red'></i></div>"+
       "</div>"+
@@ -15,6 +18,10 @@ function check_login() {
 
 function add_blog_modal(){
   $('.ui.long.modal').modal('show');
+};
+
+function author_profile() {
+  window.location.href = '/';
 };
 
 function log_out() {
@@ -128,7 +135,6 @@ function fetch_blog() {
   var blg_full = document.getElementById('blog_full');
   fetchblog.onreadystatechange = function () {
     if (fetchblog.readyState === XMLHttpRequest.DONE) {
-
       if (fetchblog.status === 200) {
         console.log(fetchblog.responseText);
         var item;
@@ -139,30 +145,30 @@ function fetch_blog() {
         item="<div class='image blog_image' style='background-image: url(../category/"+blog_lst[0].blog_category+".jpg)'>"+
           "<div class='ui huge header' style='font-size:7em'>"+blog_lst[0].blog_title+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].blog_category+"</span>"+"</div>"+
+          "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].date_created+"</span>"+"</div>"+
+          "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].published_by.name+"</span>"+"</div>"+
         "</div>"+
-        "<div class='content' style='margin-top:25px'>"+
-          "<div class='description' style='font-size:2em;padding:1em'>"+
+        "<div class='content'>"+
+          "<div class='description ui text segment' style='border-radius:0;'>"+
             "<p>"+blog_lst[0].blog_content+"</p>"+
           "</div>"+
         "</div>"+
 
-        "<div class='ui segment extra content' style='padding:1em 0'>"+
+        "<div class='ui segment extra content' style='margin:0 0;padding-left:0;padding-right:0;border-radius:0;'>"+
 
           "<div class='ui centered divided grid'>"+
 
             "<div class='right floated left aligned six wide column'>"+
 
                 "<span class='right floated'>"+
-                  "<i class='heart outline like icon'></i>"+
-                  "17 likes"+
+                  "<i class='heart outline like icon'></i>"+blog_lst[0].liked_by.length+" likes"+
                 "</span>"+
             "</div>"+
 
-            "<div class='left floated right aligned six wide column'>"+
-
-              "<i class='comment icon'></i>"+
-              "3 comments"+
-
+            "<div onclick='show_comments()' class='left floated right aligned six wide column'>"+
+              "<a>"+
+                "<i class='comment icon'></i>"+blog_lst[0].comments.length+" comments"+
+              "</a>"+
             "</div>"+
 
           "</div>"+
@@ -175,102 +181,68 @@ function fetch_blog() {
           "</div>"+
 
         "</div>"+
-
-        "<div class='ui comments' style='margin:0 auto'>"+
-          "<div class='comment'>"+
-            "<a class='avatar'>"+
-              "<img src='/images/avatar/small/matt.jpg'>"+
-            "</a>"+
-            "<div class='content'>"+
-              "<a class='author'>Matt</a>"+
-              "<div class='metadata'>"+
-                "<span class='date'>Today at 5:42PM</span>"+
-              "</div>"+
-              "<div class='text'>"+
-                "How artistic!"+
-              "</div>"+
-              "<div class='actions'>"+
-                "<a class='reply'>Reply</a>"+
-              "</div>"+
-            "</div>"+
-          "</div>"+
-          "<div class='comment'>"+
-            "<a class='avatar'>"+
-              "<img src='/images/avatar/small/matt.jpg'>"+
-            "</a>"+
-            "<div class='content'>"+
-              "<a class='author'>Matt</a>"+
-              "<div class='metadata'>"+
-                "<span class='date'>Today at 5:42PM</span>"+
-              "</div>"+
-              "<div class='text'>"+
-                "How artistic!"+
-              "</div>"+
-              "<div class='actions'>"+
-                "<a class='reply'>Reply</a>"+
-              "</div>"+
-            "</div>"+
-          "</div>"+
-          "<div class='comment'>"+
-            "<a class='avatar'>"+
-              "<img src='/images/avatar/small/matt.jpg'>"+
-            "</a>"+
-            "<div class='content'>"+
-              "<a class='author'>Matt</a>"+
-              "<div class='metadata'>"+
-                "<span class='date'>Today at 5:42PM</span>"+
-              "</div>"+
-              "<div class='text'>"+
-                "How artistic!"+
-              "</div>"+
-              "<div class='actions'>"+
-                "<a class='reply'>Reply</a>"+
-              "</div>"+
-            "</div>"+
-          "</div>"+
-          "<div class='comment'>"+
-            "<a class='avatar'>"+
-              "<img src='/images/avatar/small/matt.jpg'>"+
-            "</a>"+
-            "<div class='content'>"+
-              "<a class='author'>Matt</a>"+
-              "<div class='metadata'>"+
-                "<span class='date'>Today at 5:42PM</span>"+
-              "</div>"+
-              "<div class='text'>"+
-                "How artistic!"+
-              "</div>"+
-              "<div class='actions'>"+
-                "<a class='reply'>Reply</a>"+
-              "</div>"+
-            "</div>"+
-          "</div>"+
-        "</div>";
-
+        "<div id='comment_s' class='xyz ui comments transition hidden' style='margin:1em 15%'>"+"</div>"
         blg_full.innerHTML = item;
+
+        var n = blog_lst[0].comments.length;
+        for(var i=0;i<n;i++){
+          comments += "<div class='comment'>"+
+            "<a class='avatar'>"+
+              "<img src='#'>"+
+            "</a>"+
+            "<div class='content'>"+
+              "<a class='author'>"+blog_lst[0].comments[i].commented_by.name+"</a>"+
+              "<div class='metadata'>"+
+                "<span class='date'>"+blog_lst[0].comments[i].date_created+"</span>"+
+              "</div>"+
+              "<div class='text'>"+blog_lst[0].comments[i].comment+
+              "</div>"+
+            "</div>"+
+          "</div>";
+        }
+        document.getElementById('comment_s').innerHTML = comments;
       } else {
-        console.log(fetchblogs.responseText);
+        console.log(fetchblog.responseText);
         alert('some error occured');
       }
     }
-  };
+  }
 
   fetchblog.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
   fetchblog.setRequestHeader('Content-type', 'application/json');
   fetchblog.send(JSON.stringify(
     {
-    "type": "select",
-    "args": {
-        "table": "blogs",
-        "columns": [
-            "*"
-        ],
-        "where":{
-            "blog_id": Cookies.get('blog_id')
-        }
-    }
+      "type":"select",
+      "args":
+      {
+        "table":"blogs",
+        "columns":["blog_title","blog_content","date_created","user_id","blog_category",
+        {
+          "name":"published_by",
+          "columns":["name"]
+        },
+        {
+          "name":"comments",
+          "columns":["date_created","comment",
+          {
+            "name":"commented_by",
+            "columns":["name"]
+          }
+        ]
+      },
+      {
+        "name":"liked_by",
+        "columns":["user_id"]
+      }
+    ],
+    "where":{"blog_id":{"$eq":2}}
+  }
 }
   ));
+};
+
+function show_comments(){
+  $('#comment_s').transition('slide down');
 };
 
 function publish_blog() {

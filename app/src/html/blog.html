@@ -35,7 +35,7 @@
   </header>
 
   <div class="ui container" style="min-height:540px;margin-top:5em;margin-bottom:1em">
-    <div id="blog_full" class="ui segment" style="padding:0">
+    <div id="blog_full" class="ui segment" style="border:0;padding-left:0;padding-right:0;padding-bottom:0;">
 
       <div class="image blog_image">
         <div class="">
@@ -82,7 +82,7 @@
 
       </div>
 
-      <div class="ui comments" style="margin:0 auto">
+      <div id="comments" class="ui comments" style="margin:0 auto">
         <div class="comment">
           <a class="avatar">
             <img src="/images/avatar/small/matt.jpg">
@@ -100,6 +100,7 @@
             </div>
           </div>
         </div>
+        <div class="ui divider"></div>
         <div class="comment">
           <a class="avatar">
             <img src="/images/avatar/small/elliot.jpg">
@@ -116,6 +117,7 @@
               <a class="reply">Reply</a>
             </div>
           </div>
+          <div class="ui divider"></div>
           <div class="comments">
             <div class="comment">
               <a class="avatar">
@@ -136,6 +138,7 @@
             </div>
           </div>
         </div>
+        <div class="ui divider"></div>
         <div class="comment">
           <a class="avatar">
             <img src="/images/avatar/small/joe.jpg">
@@ -208,12 +211,9 @@
   <script src="../js/app.js" type="text/javascript"></script>
   <script src="../js/js.cookie.js"></script>
   <script>
-  window.onload = fetch_blog();
-  </script>
-  <script>
   check_login();
+  window.onload = fetch_blog();
   $('.ui.dropdown').dropdown();
-  fetch_blogs();
   </script>
 
 </body>

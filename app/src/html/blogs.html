@@ -9,22 +9,37 @@
   <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Inline|Cabin+Sketch:400,700|Faster+One|Megrim|Rye|Shojumaru|Syncopate:400,700|Vampiro+One|Vast+Shadow" rel="stylesheet">
 </head>
 <body>
-  <header class="ui blue inverted fixed menu">
-    <div class="ui container" style="padding-left:20px">
+  <header class="ui borderless main menu blue inverted ">
+    <div class="ui text container">
       <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
-    </div>
 
-    <div id="auth_user_sec" class="ui container" style="width:200px">
-      <div  class="ui buttons " style="margin:10px 0">
-        <button onclick="navigate_auth()" class="ui button">Log In</button>
-        <div class="or"></div>
-        <button onclick="navigate_auth()" class="ui positive button">Sign Up</button>
+      <div id="auth_user_sec" class="ui container" style="width:200px">
+        <div  class="ui buttons " style="margin:10px 0">
+          <button onclick="navigate_auth()" class="ui button">Log In</button>
+          <div class="or"></div>
+          <button onclick="navigate_auth()" class="ui positive button">Sign Up</button>
+        </div>
       </div>
     </div>
 
   </header>
 
-  <div id="content" class="ui segment" style="margin-top:5em">
+  <header class="ui borderless main menu blue inverted placeholder" style="display: none;">
+    <div class="ui text container">
+      <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
+
+      <div id="auth_user_sec" class="ui container" style="width:200px">
+        <div  class="ui buttons " style="margin:10px 0">
+          <button onclick="navigate_auth()" class="ui button">Log In</button>
+          <div class="or"></div>
+          <button onclick="navigate_auth()" class="ui positive button">Sign Up</button>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <div id="content" class="ui segment">
 
     <!--div class="ui right internal rail">
       <div class="ui sticky" style="width: 272px !important; height: 261.925px !important; left: 1164.6px;">
@@ -206,7 +221,6 @@
   $('.ui.long.modal').modal();
   $('.ui.dropdown').dropdown();
   fetch_blogs();
-
   </script>
 
 </body>

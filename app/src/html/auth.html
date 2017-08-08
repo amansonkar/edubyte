@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login | edubyte </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css">
     <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Inline|Cabin+Sketch:400,700|Faster+One|Megrim|Rye|Shojumaru|Syncopate:400,700|Vampiro+One|Vast+Shadow" rel="stylesheet">
 
@@ -92,9 +92,9 @@
           <input id="password" type="password" placeholder="Password">
           <p id="error"></p>
           <a onclick="forgot_password()" href="#" style="margin-left:10px">Forgot password ?</a>
-          <button id="login_btn" onclick="login_user()" type="submit" class="btn btn-primary" style="position:absolute;right:50px">Sign In</button>
+          <button id="login_btn" onclick="login_user()" type="submit" class="ui blue submit button" style="position:absolute;right:50px">Sign In</button>
         </form>
-        <hr style="margin:100px 0 40px 0">
+        <div class="ui horizontal inverted divider">Or</div>
         <!--<span style="background-color: #749ea8;border:2px solid rgba(255, 255, 255, .5);border-radius:100%;padding:10px;position:relative;top:-60px;margin:0 40%">OR</span>
         <span style="position:relative;top:-20px;margin:0 35%">Sign In with</span>
         <button type="button" class="btn btn-default" aria-label="Left Align" style="background-color: #749ea8;border:2px solid rgba(255, 255, 255, .5);border-radius:100%;padding:20px;margin:0 20px">
@@ -109,32 +109,43 @@
         <button type="button" class="btn btn-default" aria-label="Left Align" style="background-color: #749ea8;border:2px solid rgba(255, 255, 255, .5);border-radius:100%;padding:20px;margin-right:20px">
           <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
         </button>-->
-        <span style="position:relative;top:-30px;margin:0 35%">New to Us</span>
-        <button type="button" class="btn btn-primary reg_btn" style="position:relative;margin:0px 30%">Register Now</button>
+
+
+        <div>
+          <div>New to Us</div>
+          <div class="ui medium labeled icon blue button reg_btn">
+            <i class="signup icon"></i>
+            Register Now
+          </div>
+        </div>
+
       </section>
-      <section id="register_sec"  class="sec_4 hidden">
+
+      <section id="register_sec"  class="sec_4 transition hidden">
         <form id="rg">
           <input id="user"  type="text"  placeholder="Username">
           <input id="user_email" type="email"  placeholder="Email">
           <input id="user_mobile" type="number"  placeholder="Mobile">
           <input id="user_password" type="password" placeholder="Password">
           <!--<input id="cpassword" type="password" placeholder="Confirm Password">-->
-          <button id="register_btn" onclick="register_user()" type="submit" class="btn btn-primary" style="position:relative;margin:20px 32%">Register</button>
+          <button id="register_btn" onclick="register_user()" type="submit" class="ui blue submit button" style="position:relative;margin:20px 32%">Register</button>
         </form>
-        <hr style="margin:40px 0">
-        <span style="position:relative;top:-30px;margin:0 25%">Already have an Account?</span>
 
-        <button type="button" class="btn btn-primary reg_btn" style="position:relative;margin:0 35%">Sign In</button>
+        <div class="ui horizontal inverted divider">Or</div>
+
+
+        <div>
+          <div>Already have an Account?</div>
+          <div class="ui medium labeled icon blue button reg_btn">
+            <i class="signup icon"></i>
+            Sign In
+          </div>
+        </div>
       </section>
+
     </section>
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.js"></script>
 
     <script src="../js/auth.js" type="text/javascript"></script>
@@ -150,5 +161,6 @@
             });
       });
     </script>
+
   </body>
 </html>

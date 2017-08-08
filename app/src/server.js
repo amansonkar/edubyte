@@ -26,6 +26,10 @@ app.get('/blog', function (req, res) {
   res.sendFile('html/blog.html', { root });
 });
 
+app.get('/profile', function (req, res) {
+  res.sendFile('html/profile.html', { root });
+});
+
 app.get('/authentication', function (req, res) {
   res.sendFile('html/auth.html', { root });
 });
@@ -40,6 +44,10 @@ app.get('/js/auth.js', function (req, res) {
 
 app.get('/js/js.cookie.js', function (req, res) {
   res.sendFile(path.join(root,'js/js.cookie.js'));
+});
+
+app.get('/category/1.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/1.jpg'));
 });
 
 app.get('/category/science.jpg', function (req, res) {
