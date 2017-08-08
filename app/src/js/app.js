@@ -177,7 +177,7 @@ function fetch_blog() {
 
           "<div class='ui fluid large transparent left icon input' style='margin:0 1em'>"+
             "<i class='heart outline icon'></i>"+
-            "<input type='text' placeholder='Add Comment...'>"+
+            "<input id='commented' type='text' onkeypress='handle(e)' placeholder='Add Comment...'>"+
           "</div>"+
 
         "</div>"+
@@ -198,7 +198,8 @@ function fetch_blog() {
               "<div class='text'>"+blog_lst[0].comments[i].comment+
               "</div>"+
             "</div>"+
-          "</div>";
+          "</div>"+
+          "<div class='ui divider'></div>";
         }
         document.getElementById('comment_s').innerHTML = comments;
       } else {
@@ -241,8 +242,32 @@ function fetch_blog() {
   ));
 };
 
+function handle(e) {
+  if(e.keyCode === 13){
+    add_comment();
+  }
+  return false;
+};
+
 function show_comments(){
   $('#comment_s').transition('slide down');
+};
+
+function add_comment(){
+  comments = "<div class='comment'>"+
+    "<a class='avatar'>"+
+      "<img src='#'>"+
+    "</a>"+
+    "<div class='content'>"+
+      "<a class='author'>"+"Aman Sonkar"+"</a>"+
+      "<div class='metadata'>"+
+        "<span class='date'>"+Now+"</span>"+
+      "</div>"+
+      "<div class='text'>"+document.getElementById('commented').value+
+      "</div>"+
+    "</div>"+
+  "</div>"+"<div class='ui divider'></div>"+comments;
+  document.getElementById('comment_s').innerHTML = comments;
 };
 
 function publish_blog() {
