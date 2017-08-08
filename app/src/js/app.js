@@ -261,7 +261,7 @@ function add_comment(){
     "<div class='content'>"+
       "<a class='author'>"+"Aman Sonkar"+"</a>"+
       "<div class='metadata'>"+
-        "<span class='date'>"+Now+"</span>"+
+        "<span class='date'>"+"Now"+"</span>"+
       "</div>"+
       "<div class='text'>"+document.getElementById('commented').value+
       "</div>"+
