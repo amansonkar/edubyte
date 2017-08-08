@@ -38,7 +38,7 @@ function register_user() {
       if (register.status === 200) {
         alert('Registered Successfully')
         console.log(register.responseText);
-        window.location.href = '/authentication';
+        window.location.reload();
       } else {
         console.log('Register failed');
         document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
