@@ -37,7 +37,7 @@ function register_user() {
     if (register.readyState === XMLHttpRequest.DONE) {
       if (register.status === 200) {
         console.log(register.responseText);
-        var list = JSON.parse(responseText);
+        var list = JSON.parse(register.responseText);
         add_user_profile(list,name);
         window.location.reload();
       } else {
