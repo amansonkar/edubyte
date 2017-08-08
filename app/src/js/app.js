@@ -177,7 +177,7 @@ function fetch_blog() {
 
           "<div class='ui fluid large transparent left icon input' style='margin:0 1em'>"+
             "<i class='heart outline icon'></i>"+
-            "<input id='commented' type='text' onkeypress='handle(e)' placeholder='Add Comment...'>"+
+            "<input id='commented' type='text' onkeypress='handle(event)' placeholder='Add Comment...'>"+
           "</div>"+
 
         "</div>"+
