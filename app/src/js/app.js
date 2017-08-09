@@ -283,8 +283,6 @@ function add_comment(){
         document.getElementById('comment_s').innerHTML = comments;
         document.getElementById('c_count').innerHTML = "<i class='comment icon'></i>"+current_c_count+1+" comments";
         $('#comment_s').transition('slide down');
-
-        window.location.reload();
       } else {
         console.log(this.responseText);
         alert("You must be sure to be login before comment and like any post");
