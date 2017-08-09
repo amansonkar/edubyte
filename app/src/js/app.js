@@ -256,6 +256,66 @@ function show_comments(){
   $('#comment_s').transition('slide down');
 };
 
+function like(){
+  var comm = document.getElementById('commented').value;
+  comments = "<div class='comment'>"+
+    "<a class='avatar'>"+
+      "<img src='#'>"+
+    "</a>"+
+    "<div class='content'>"+
+      "<a class='author'>"+"Aman Sonkar"+"</a>"+
+      "<div class='metadata'>"+
+        "<span class='date'>"+"Now"+"</span>"+
+      "</div>"+
+      "<div class='text'>"+comm+
+      "</div>"+
+    "</div>"+
+  "</div>"+"<div class='ui divider'></div>"+comments;
+
+  var comment_req = new XMLHttpRequest();
+  comment_req.onreadystatechange = function () {
+    if (comment_req.readyState === XMLHttpRequest.DONE) {
+      if (comment_req.status === 200) {
+        console.log("Comment Published Successfully");
+        //console.log(fetchblogs.responseText);
+        blogs_all=JSON.parse(this.responseText);
+
+        document.getElementById('comment_s').innerHTML = comments;
+        document.getElementById('c_count').innerHTML = "<i class='comment icon'></i>"+current_c_count+1+" comments";
+        $('#comment_s').transition('slide down');
+      } else {
+        console.log(this.responseText);
+        alert("You must be sure to be login before comment and like any post");
+      }
+    }
+  }
+  var Bearer = "Bearer ";
+  var hasura;
+  var has_id;
+  if(Cookies.get('hasura_username')!=Cookies.get('nothing')){
+    hasura = JSON.parse(Cookies.get('edubyte'));
+    Bearer+= hasura.auth_token;
+    has_id = hasura.hasura_id;
+  };
+
+  comment_req.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
+  comment_req.setRequestHeader('Content-type', 'application/json');
+  comment_req.setRequestHeader('Authorization',Bearer);
+  comment_req.send(JSON.stringify(
+    {
+    	"type": "insert",
+    	"args": {
+    		"table": "comments",
+    		"objects": [{
+    			"user_id": has_id,
+          "blog_id": Cookies.get('blog_id'),
+    			"comment": comm
+    		}]
+    	}
+    }
+  ));
+};
+
 function add_comment(){
   var comm = document.getElementById('commented').value;
   comments = "<div class='comment'>"+
