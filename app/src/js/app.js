@@ -414,7 +414,7 @@ function add_comment(){
       "<img src='#'>"+
     "</a>"+
     "<div class='content'>"+
-      "<a class='author'>"+"Aman Sonkar"+"</a>"+
+      "<a class='author'>"+Cookies.get('hasura_username')+"</a>"+
       "<div class='metadata'>"+
         "<span class='date'>"+"Now"+"</span>"+
       "</div>"+
