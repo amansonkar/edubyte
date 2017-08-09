@@ -24,7 +24,7 @@ function login_user() {
   var username = document.getElementById('username').value;
   var password = document.getElementById('password').value;
   login.open('POST', 'https://auth.antecedent20.hasura-app.io/login', false);
-  login.withCredentials = false;
+  login.withCredentials = true;
   login.setRequestHeader('Content-type', 'application/json');
   console.log(JSON.stringify({ username: username, password: password }));
   login.send(JSON.stringify({ username: username, password: password }));
@@ -54,7 +54,7 @@ function register_user() {
   var email = document.getElementById('user_email').value;
   var password = document.getElementById('user_password').value;
   register.open('POST', 'https://auth.antecedent20.hasura-app.io/signup', false);
-  register.withCredentials = false;
+  register.withCredentials = true;
   register.setRequestHeader('Content-type', 'application/json');
   register.send(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
   document.getElementById('register_btn').innerHTML = 'Signing in...';
