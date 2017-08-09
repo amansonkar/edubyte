@@ -1,5 +1,6 @@
 var comments = "";
-
+var current_c_count;
+var current_l_count;
 
 function check_login() {
   var loggedin_user = Cookies.get('hasura_username');
@@ -141,6 +142,8 @@ function fetch_blog() {
         blog_full=JSON.parse(this.responseText);
         console.log(blog_full);
         var blog_lst = blog_full;
+        current_c_count=blog_lst[0].comments.length;
+        current_l_count = blog_lst[0].liked_by.length;
 
         item="<div class='image blog_image' style='background-image: url(../category/"+blog_lst[0].blog_category+".jpg)'>"+
           "<div class='ui huge header' style='font-size:7em'>"+blog_lst[0].blog_title+"</div>"+
@@ -160,14 +163,14 @@ function fetch_blog() {
 
             "<div class='right floated left aligned six wide column'>"+
 
-                "<span class='right floated'>"+
-                  "<i class='heart outline like icon'></i>"+blog_lst[0].liked_by.length+" likes"+
+                "<span id='l_count' class='right floated'>"+
+                  "<i class='heart outline like icon'></i>"+current_l_count+" likes"+
                 "</span>"+
             "</div>"+
 
             "<div onclick='show_comments()' class='left floated right aligned six wide column'>"+
-              "<a>"+
-                "<i class='comment icon'></i>"+blog_lst[0].comments.length+" comments"+
+              "<a id='c_count'>"+
+                "<i class='comment icon'></i>"+current_c_count+" comments"+
               "</a>"+
             "</div>"+
 
@@ -236,7 +239,7 @@ function fetch_blog() {
         "columns":["user_id"]
       }
     ],
-    "where":{"blog_id":{"$eq":2}}
+    "where":{"blog_id":{"$eq":Cookies.get('blog_id')}}
   }
 }
   ));
@@ -254,6 +257,7 @@ function show_comments(){
 };
 
 function add_comment(){
+  var comm = document.getElementById('commented').value;
   comments = "<div class='comment'>"+
     "<a class='avatar'>"+
       "<img src='#'>"+
@@ -263,13 +267,55 @@ function add_comment(){
       "<div class='metadata'>"+
         "<span class='date'>"+"Now"+"</span>"+
       "</div>"+
-      "<div class='text'>"+document.getElementById('commented').value+
+      "<div class='text'>"+comm+
       "</div>"+
     "</div>"+
   "</div>"+"<div class='ui divider'></div>"+comments;
-  document.getElementById('comment_s').innerHTML = comments;
-  $('#comment_s').transition('slide down');
 
+  var comment_req = new XMLHttpRequest();
+  comment_req.onreadystatechange = function () {
+    if (comment_req.readyState === XMLHttpRequest.DONE) {
+      if (comment_req.status === 200) {
+        console.log("Comment Published Successfully");
+        //console.log(fetchblogs.responseText);
+        blogs_all=JSON.parse(this.responseText);
+
+        document.getElementById('comment_s').innerHTML = comments;
+        document.getElementById('c_count').innerHTML = "<i class='comment icon'></i>"+current_c_count+1+" comments";
+        $('#comment_s').transition('slide down');
+
+        window.location.reload();
+      } else {
+        console.log(this.responseText);
+        alert("You must be sure to be login before comment and like any post");
+      }
+    }
+  }
+  var Bearer = "Bearer ";
+  var hasura;
+  var has_id;
+  if(Cookies.get('hasura_username')!=Cookies.get('nothing')){
+    hasura = JSON.parse(Cookies.get('edubyte'));
+    Bearer+= hasura.auth_token;
+    has_id = hasura.hasura_id;
+  };
+
+  comment_req.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
+  comment_req.setRequestHeader('Content-type', 'application/json');
+  comment_req.setRequestHeader('Authorization',Bearer);
+  comment_req.send(JSON.stringify(
+    {
+    	"type": "insert",
+    	"args": {
+    		"table": "comments",
+    		"objects": [{
+    			"user_id": has_id,
+          "blog_id": Cookies.get('blog_id'),
+    			"comment": comm
+    		}]
+    	}
+    }
+  ));
 };
 
 function publish_blog() {
@@ -278,8 +324,6 @@ function publish_blog() {
     if (publish.readyState === XMLHttpRequest.DONE) {
       if (publish.status === 200) {
         alert("Blog Published Successfully");
-        //console.log(fetchblogs.responseText);
-        var items="";
         blogs_all=JSON.parse(this.responseText);
         window.location.reload();
       } else {
