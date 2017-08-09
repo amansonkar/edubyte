@@ -62,7 +62,7 @@
   </style>
 </head>
 <body>
-  <header class="ui borderless stackable main menu blue inverted ">
+  <header class="ui borderless stackable main menu blue inverted">
     <div class="ui text container">
       <a href="/" class="ui container header" style="font-family:'Shojumaru', cursive;color:white;font-size:50px">edubyte</a>
 
@@ -146,44 +146,17 @@
         </div>
 
       </div>
+      <div id="fetch_blog_btn" onclick="fetch_blog_s()" class="ui blue submit button">Fetch more...</div>
     </div>
 
   </div>
 
   <div class="ui black inverted vertical footer segment ">
     <div class="ui center aligned container">
-      <div class="ui stackable inverted grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 1</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 2</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="seven wide right floated column">
-          <h4 class="ui inverted teal header">Help Preserve This Project</h4>
-          <p> Support for the continued development of Semantic UI comes directly from the community.</p>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="7ZAF2Q8DBZAQL">
-            <button type="submit" class="ui large teal button">Donate Today</button>
-          </form>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p> action inside the footer that could help re-engage users.</p>
-        </div>
+      <div class="ui container">
+        <div style="font-size:3em">About Us</div>
+        <div class="ui divider"></div>
+        <div style="font-size:1em">About Us</div>
       </div>
       <div class="ui inverted section divider"></div>
       <div class="ui container">
@@ -218,19 +191,22 @@
               <label>Choose a Category for your Blog</label>
               <select id="blog_category_select" class="ui fluid search dropdown" name="blog[category]">
                 <option value="">Category</option>
-                <option value="1">Art</option>
-                <option value="2">Economy</option>
-                <option value="3">Fashion</option>
-                <option value="4">Food</option>
-                <option value="5">Motivation</option>
-                <option value="6">Movies</option>
-                <option value="7">Politics</option>
-                <option value="8">Programming</option>
-                <option value="9">Projects</option>
-                <option value="10">Sports</option>
-                <option value="11">Technology</option>
-                <option value="12">Travel</option>
-                <option value="12">World</option>
+                <option value="Art">Art</option>
+                <option value="Business">Business</option>
+                <option value="Culture">Culture</option>
+                <option value="Economy">Economy</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Food">Food</option>
+                <option value="Motivation">Motivation</option>
+                <option value="Movies">Movies</option>
+                <option value="Politics">Politics</option>
+                <option value="Programming">Programming</option>
+                <option value="Projects">Projects</option>
+                <option value="Science & Technology">Science & Technology</option>
+                <option value="Sports">Sports</option>
+                <option value="Travel">Travel</option>
+                <option value="World">World</option>
               </select>
           </div>
           <div class="field">
