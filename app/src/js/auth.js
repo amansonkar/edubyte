@@ -53,7 +53,7 @@ function register_user() {
   var mobile = document.getElementById('user_mobile').value;
   var email = document.getElementById('user_email').value;
   var password = document.getElementById('user_password').value;
-  register.open('POST', 'https://auth.antecedent20.hasura-app.io/signup', false);
+  register.open('POST', 'https://auth.antecedent20.hasura-app.io/signup', true);
   register.withCredentials = false;
   register.setRequestHeader('Content-type', 'application/json');
   register.send(JSON.stringify({ username: username, mobile: mobile, email: email, password: password }));
@@ -77,7 +77,7 @@ function add_user_profile(list,name) {
   }
   var bearer = "Bearer ";
   bearer += list.auth_token;
-  update.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', false);
+  update.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
   update.withCredentials = true;
   update.setRequestHeader('Content-type', 'application/json');
   update.setRequestHeader('Authorization', bearer);
