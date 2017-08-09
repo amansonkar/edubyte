@@ -77,8 +77,6 @@ function add_user_profile(list,name) {
   }
   var bearer = "Bearer ";
   bearer += list.auth_token;
-  console.log(bearer);
-  console.log(name);
   update.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', false);
   update.withCredentials = true;
   update.setRequestHeader('Content-type', 'application/json');
@@ -89,7 +87,7 @@ function add_user_profile(list,name) {
       "args": {
         "table": "user_profile",
         "objects": [{
-          "user_id": list.hasura_id,
+          "id": list.hasura_id,
           "name": name
         }]
       }
