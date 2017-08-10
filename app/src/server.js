@@ -82,6 +82,14 @@ app.get('/category/science.jpg', function (req, res) {
   res.sendFile(path.join(root,'/category/science.jpg'));
 });
 
+app.get('/category/Science & Technology.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Science & Technology.jpg'));
+});
+
+app.get('/category/Project.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Project.jpg'));
+});
+
 app.get('/category/sports.jpg', function (req, res) {
   res.sendFile(path.join(root,'/category/sports.jpg'));
 });
