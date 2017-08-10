@@ -11,7 +11,7 @@ function login_user() {
         Cookies.set('hasura_username', username);
         //console.log(Cookies.get('edubyte'));
         //alert('Login Successfully');
-        window.location.href = '#top';
+        window.location.href = '/';
       } else {
         //console.log('Login failed');
         document.getElementById('error').innerHTML = 'Login Credentials are not Correct';
@@ -23,7 +23,7 @@ function login_user() {
   var username = document.getElementById('username').value;
   var password = document.getElementById('password').value;
   login.open('POST', 'https://auth.antecedent20.hasura-app.io/login', false);
-  login.withCredentials = true;
+  login.withCredentials = false;
   login.setRequestHeader('Content-type', 'application/json');
   //console.log(JSON.stringify({ username: username, password: password }));
   login.send(JSON.stringify({ username: username, password: password }));
@@ -77,7 +77,7 @@ function add_user_profile(list,name) {
   var bearer = "Bearer ";
   bearer += list.auth_token;
   update.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', false);
-  update.withCredentials = true;
+  update.withCredentials = false;
   update.setRequestHeader('Content-type', 'application/json');
   update.setRequestHeader('Authorization', bearer);
   update.send(JSON.stringify(
@@ -92,4 +92,4 @@ function add_user_profile(list,name) {
       }
     }
   ));
-}
+};
