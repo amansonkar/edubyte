@@ -217,14 +217,14 @@ function fetch_blog() {
         };
 
         item="<div class='image blog_image' style='background-image: url(../category/"+blog_lst[0].blog_category+".jpg)'>"+
-          "<div class='ui huge header' style='font-size:7em'>"+blog_lst[0].blog_title+"</div>"+
+          "<div class='ui huge header' style='font-size:5em'>"+blog_lst[0].blog_title+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].blog_category+"</span>"+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].date_created+"</span>"+"</div>"+
-          "<div class='ui huge header'>"+"<a class='tagline' onclick=fetch_user_profile("+blog_lst[i_b].user_id+")>"+blog_lst[0].published_by.name+"</a>"+"</div>"+
+          "<div class='ui huge header'>"+"<a onclick=fetch_user_profile("+blog_lst[i_b].user_id+")>"+blog_lst[0].published_by.name+"</a>"+"</div>"+
         "</div>"+
         "<div class='content'>"+
-          "<div class='description ui text segment' style='border-radius:0;'>"+
-            "<p>"+blog_lst[0].blog_content+"</p>"+
+          "<div class='description ui text segment' style='border-radius:0;font-size:1em'>"+
+            "<p >"+blog_lst[0].blog_content+"</p>"+
           "</div>"+
         "</div>"+
         "<div class='ui segment extra content' style='margin:0 0;padding-left:0;padding-right:0;border-radius:0;'>"+
