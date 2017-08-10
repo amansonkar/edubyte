@@ -99,6 +99,10 @@ function fetch_blogs() {
           x=10;
         }else x=n_blogs%10;
         while(i_b<n_blogs&&x--){
+          var date = blog_lst[i_b].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
+          var fulldate=date.split(" ");
+          date=full_date[0];
+          var hour=full_date[1];
           items+="<div class='item'>"+
             "<div class='ui small image'>"+
               "<img src='../category/"+blog_lst[i_b].blog_category+".jpg'>"+
@@ -106,7 +110,7 @@ function fetch_blogs() {
             "<div class='content'>"+
               "<a class='header' onclick=blog_full("+blog_lst[i_b].blog_id+")>"+blog_lst[i_b].blog_title+"</a>"+
               "<div class='meta'>"+
-                "<a>"+blog_lst[i_b].date_created+"</a>"+
+                "<a>"+date+"</a>"+
                 "<a>"+blog_lst[i_b].blog_category+"</a>"+
               "</div>"+
               "<div class='description'>"+blog_lst[i_b].blog_content.slice(0,150)+"..."+
@@ -160,6 +164,10 @@ function fetch_blog_s() {
       x=10;
     }else x=n_blogs%10;
     while(i_b<n_blogs&&x--){
+      var date = blog_lst[i_b].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
+      var fulldate=date.split(" ");
+      date=full_date[0];
+      var hour=full_date[1];
       items+="<div class='item'>"+
         "<div class='ui small image'>"+
           "<img src='../category/"+blog_lst[i_b].blog_category+".jpg'>"+
@@ -167,7 +175,7 @@ function fetch_blog_s() {
         "<div class='content'>"+
           "<a class='header' onclick=blog_full("+blog_lst[i_b].blog_id+")>"+blog_lst[i_b].blog_title+"</a>"+
           "<div class='meta'>"+
-            "<a>"+blog_lst[i_b].date_created+"</a>"+
+            "<a>"+date+"</a>"+
             "<a>"+blog_lst[i_b].blog_category+"</a>"+
           "</div>"+
           "<div class='description'>"+blog_lst[i_b].blog_content.slice(0,150)+
@@ -216,10 +224,15 @@ function fetch_blog() {
           }
         };
 
+        var date = blog_lst[0].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
+        var fulldate=date.split(" ");
+        date=full_date[0];
+        var hour=full_date[1];
+
         item="<div class='image blog_image' style='background-image: url(../category/"+blog_lst[0].blog_category+".jpg)'>"+
           "<div class='ui huge header' style='font-size:5em'>"+blog_lst[0].blog_title+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].blog_category+"</span>"+"</div>"+
-          "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].date_created+"</span>"+"</div>"+
+          "<div class='ui huge header'>"+"<span class='tagline'>"+date+"</span>"+"</div>"+
           "<div class='ui huge header'>"+"<a onclick=fetch_user_profile("+blog_lst[i_b].user_id+")>"+blog_lst[0].published_by.name+"</a>"+"</div>"+
         "</div>"+
         "<div class='content'>"+
@@ -265,6 +278,10 @@ function fetch_blog() {
 
         var n = blog_lst[0].comments.length;
         for(var i=0;i<n;i++){
+          var datex = blog_lst[0].comments[i].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
+          var fulldate=date.split(" ");
+          datex=full_date[0];
+          var hour=full_date[1];
           comments += "<div class='comment'>"+
             "<a class='avatar'>"+
               "<img src='#'>"+
@@ -272,7 +289,7 @@ function fetch_blog() {
             "<div class='content'>"+
               "<a class='author'>"+blog_lst[0].comments[i].commented_by.name+"</a>"+
               "<div class='metadata'>"+
-                "<span class='date'>"+blog_lst[0].comments[i].date_created+"</span>"+
+                "<span class='date'>"+datex+"</span>"+
               "</div>"+
               "<div class='text'>"+blog_lst[0].comments[i].comment+
               "</div>"+
@@ -539,6 +556,10 @@ function fetch_ublogs() {
           x=10;
         }else x=n_ublogs%10;
         while(i_ub<n_ublogs&&x--){
+          var datex = blog_ulst[i_ub].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
+          var fulldate=date.split(" ");
+          datex=full_date[0];
+          var hour=full_date[1];
           uitems+="<div class='item'>"+
             "<div class='ui small image'>"+
               "<img src='../category/"+blog_ulst[i_ub].blog_category+".jpg'>"+
@@ -546,7 +567,7 @@ function fetch_ublogs() {
             "<div class='content'>"+
               "<a class='header' onclick=blog_full("+blog_ulst[i_ub].blog_id+")>"+blog_ulst[i_ub].blog_title+"</a>"+
               "<div class='meta'>"+
-                "<a>"+blog_ulst[i_ub].date_created+"</a>"+
+                "<a>"+datex+"</a>"+
                 "<a>"+blog_ulst[i_ub].blog_category+"</a>"+
               "</div>"+
               "<div class='description'>"+blog_ulst[i_ub].blog_content.slice(0,150)+
@@ -601,6 +622,10 @@ function fetch_ublog_s() {
       x=10;
     }else x=n_ublogs%10;
     while(i_ub<n_ublogs&&x--){
+      var datex = blog_ulst[i_ub].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
+      var fulldate=date.split(" ");
+      datex=full_date[0];
+      var hour=full_date[1];
       uitems+="<div class='item'>"+
         "<div class='ui small image'>"+
           "<img src='../category/"+blog_ulst[i_ub].blog_category+".jpg'>"+
@@ -608,7 +633,7 @@ function fetch_ublog_s() {
         "<div class='content'>"+
           "<a class='header' onclick=blog_full("+blog_ulst[i_ub].blog_id+")>"+blog_ulst[i_ub].blog_title+"</a>"+
           "<div class='meta'>"+
-            "<a>"+blog_ulst[i_ub].date_created+"</a>"+
+            "<a>"+datex+"</a>"+
             "<a>"+blog_ulst[i_ub].blog_category+"</a>"+
           "</div>"+
           "<div class='description'>"+blog_ulst[i_ub].blog_content.slice(0,150)+
