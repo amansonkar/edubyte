@@ -100,7 +100,7 @@ function fetch_blogs() {
         }else x=n_blogs%10;
         while(i_b<n_blogs&&x--){
           var date = blog_lst[i_b].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
-          var fulldate=date.split(" ");
+          var full_date=date.split(" ");
           date=full_date[0];
           var hour=full_date[1];
           items+="<div class='item'>"+
@@ -165,7 +165,7 @@ function fetch_blog_s() {
     }else x=n_blogs%10;
     while(i_b<n_blogs&&x--){
       var date = blog_lst[i_b].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
-      var fulldate=date.split(" ");
+      var full_date = date.split(" ");
       date=full_date[0];
       var hour=full_date[1];
       items+="<div class='item'>"+
@@ -225,7 +225,7 @@ function fetch_blog() {
         };
 
         var date = blog_lst[0].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
-        var fulldate=date.split(" ");
+        var full_date=date.split(" ");
         date=full_date[0];
         var hour=full_date[1];
 
@@ -279,7 +279,7 @@ function fetch_blog() {
         var n = blog_lst[0].comments.length;
         for(var i=0;i<n;i++){
           var datex = blog_lst[0].comments[i].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
-          var fulldate=date.split(" ");
+          var full_date=datex.split(" ");
           datex=full_date[0];
           var hour=full_date[1];
           comments += "<div class='comment'>"+
@@ -557,7 +557,7 @@ function fetch_ublogs() {
         }else x=n_ublogs%10;
         while(i_ub<n_ublogs&&x--){
           var datex = blog_ulst[i_ub].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
-          var fulldate=date.split(" ");
+          var full_date=datex.split(" ");
           datex=full_date[0];
           var hour=full_date[1];
           uitems+="<div class='item'>"+
@@ -623,7 +623,7 @@ function fetch_ublog_s() {
     }else x=n_ublogs%10;
     while(i_ub<n_ublogs&&x--){
       var datex = blog_ulst[i_ub].date_created.toString("yyyyMMddHHmmss").replace(/T/, ' ').replace(/\..+/, '');
-      var fulldate=date.split(" ");
+      var full_date=datex.split(" ");
       datex=full_date[0];
       var hour=full_date[1];
       uitems+="<div class='item'>"+
