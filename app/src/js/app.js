@@ -229,7 +229,7 @@ function fetch_blog() {
         date=full_date[0];
         var hour=full_date[1];
 
-        item="<div class='image blog_image' style=background-image: url(../category/"+blog_lst[0].blog_category+".jpg)>"+
+        item="<div class='image blog_image' style=background-image:url(../category/"+blog_lst[0].blog_category+".jpg)>"+
           "<div class='ui huge header' style='font-size:5em'>"+blog_lst[0].blog_title+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].blog_category+"</span>"+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+date+"</span>"+"</div>"+
