@@ -50,6 +50,34 @@ app.get('/category/1.jpg', function (req, res) {
   res.sendFile(path.join(root,'/category/1.jpg'));
 });
 
+app.get('/category/Food.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Food.jpg'));
+});
+
+app.get('/category/Travel.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Travel.jpg'));
+});
+
+app.get('/category/Motivation.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Motivation.jpg'));
+});
+
+app.get('/category/Art.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Art.jpg'));
+});
+
+app.get('/category/Economy.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Economy.jpg'));
+});
+
+app.get('/category/Fashion.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Fashion.jpg'));
+});
+
+app.get('/category/Movies.jpg', function (req, res) {
+  res.sendFile(path.join(root,'/category/Movies.jpg'));
+});
+
 app.get('/category/science.jpg', function (req, res) {
   res.sendFile(path.join(root,'/category/science.jpg'));
 });
