@@ -11,7 +11,7 @@ function login_user() {
         Cookies.set('hasura_username', username);
         console.log(Cookies.get('edubyte'));
         alert('Login Successfully');
-        window.location.href = 'https://app.antecedent20.hasura-app.io';
+        window.location.href = '#top';
       } else {
 
         console.log('Login failed');
