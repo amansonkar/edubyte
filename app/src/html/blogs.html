@@ -16,7 +16,6 @@
     }
 
     .main.menu {
-      margin-top: 4em;
       border-radius: 0;
       border: none;
       box-shadow: none;
@@ -48,15 +47,7 @@
       left: 800px;
     }
 
-    .text.container .left.floated.image {
-      margin: 2em 2em 2em -4em;
-    }
-    .text.container .right.floated.image {
-      margin: 2em -4em 2em 2em;
-    }
-
     .ui.footer.segment {
-      margin: 5em 0em 0em;
       padding: 5em 0em;
     }
   </style>
@@ -79,7 +70,7 @@
 
   </header>
 
-  <div id="content" class="ui segment">
+  <div class="ui segment" style="min-height:480px">
 
     <!--div class="ui right internal rail">
       <div class="ui sticky" style="width: 272px !important; height: 261.925px !important; left: 1164.6px;">
@@ -96,7 +87,7 @@
       </div>
     </div-->
 
-    <div class="ui container" style="min-height:381px">
+    <div class="ui container">
       <div id="child" class="ui relaxed divided items">
         <div id="blog_loader" class="ui active inverted dimmer" style="z-index:9">
           <div class="ui larger text loader">Loading</div>
@@ -148,7 +139,9 @@
         </div>
 
       </div>
-      <div id="fetch_blog_btn" onclick="fetch_blog_s()" class="ui blue submit button">Fetch more...</div>
+      <div class="ui center aligned container">
+        <div id="fetch_blog_btn" onclick="fetch_blog_s()" class="ui blue submit button">Fetch more...</div>
+      </div>
     </div>
 
   </div>

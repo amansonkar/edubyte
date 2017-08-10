@@ -1,20 +1,27 @@
 var comments = "";
 var current_c_count;
 var current_l_count;
-var n_comment,i_c=0;
+var n_blogs,i_b=0;
+var n_ublogs,i_ub=0;
 var blg = document.getElementById('child');
-var blog_lst;
-var items="";
+var ublg = document.getElementById('uchild');
+var blog_lst,blog_ulst;
+var items="",uitems="";
 var like_flag=0;
+var Name = "";
 
 function check_login() {
+  fetch_name(JSON.parse(Cookies.get('edubyte')).hasura_id);
+  Cookies.set('hasura_name',Name);
+  var logged_user = Cookies.get('hasura_name');
   var loggedin_user = Cookies.get('hasura_username');
   if(loggedin_user!=Cookies.get('nothing')){
-    document.getElementById('auth_user_sec').innerHTML = "<div class='ui inline floating dropdown link item'>"+
-      "<i class='spy icon'></i>"+
-      "<div>"+loggedin_user+"</div>"+
+    var ttt = Name;
+    console.log(ttt);
+    document.getElementById('auth_user_sec').innerHTML = "<div class='ui right floated header dropdown' style='color:white;margin:1.5rem 0'>"+
+      "<div>"+"<i class='spy icon'></i>"+logged_user+"</div>"+
       "<div class='menu'>"+
-        "<div onclick='profile()' class='item'>View Profile</div>"+
+        "<div onclick=fetch_user_profile("+JSON.parse(Cookies.get('edubyte')).hasura_id+") class='item'>View Profile</div>"+
         "<div onclick='add_blog_modal()' class='item'>Publish Blog</div>"+
         "<div onclick='log_out()' class='item'>Sign Out <i class='power icon red'></i></div>"+
       "</div>"+
@@ -58,6 +65,10 @@ function navigate_home() {
   window.location.href = '/';
 };
 
+function navigate_profile() {
+  window.location.href = '/profile';
+};
+
 function navigate_auth() {
   window.location.href = '/authentication';
 };
@@ -67,9 +78,13 @@ function blog_full(b_id) {
   window.location.href = '/blog';
 };
 
+function fetch_user_profile(fetch_id) {
+  Cookies.set('fetch_user_id',fetch_id);
+  window.location.href = '/profile';
+};
+
 function fetch_blogs() {
   var fetchblogs = new XMLHttpRequest();
-  var blogs_all;
 
   fetchblogs.onreadystatechange = function () {
     if (fetchblogs.readyState === XMLHttpRequest.DONE) {
@@ -77,45 +92,45 @@ function fetch_blogs() {
       if (fetchblogs.status === 200) {
         //console.log(fetchblogs.responseText);
 
-        blogs_all=JSON.parse(this.responseText);
-        console.log(blogs_all);
-        blog_lst = blogs_all;
-        n_comment = blog_lst.length;
+        blog_lst=JSON.parse(this.responseText);
+        console.log(blog_lst);
+        n_blogs = blog_lst.length;
 
         var x;
-        if(n_comment-10>=0){
+        if(n_blogs-10>=0){
           x=10;
-        }else x=n_comment%10;
-        while(i_c<n_comment&&x--){
+        }else x=n_blogs%10;
+        while(i_b<n_blogs&&x--){
           items+="<div class='item'>"+
             "<div class='ui small image'>"+
-              "<img src='../category/"+blog_lst[i_c].blog_category+".jpg'>"+
+              "<img src='../category/"+blog_lst[i_b].blog_category+".jpg'>"+
             "</div>"+
             "<div class='content'>"+
-              "<a class='header' onclick=blog_full("+blog_lst[i_c].blog_id+")>"+blog_lst[i_c].blog_title+"</a>"+
+              "<a class='header' onclick=blog_full("+blog_lst[i_b].blog_id+")>"+blog_lst[i_b].blog_title+"</a>"+
               "<div class='meta'>"+
-                "<a>"+blog_lst[i_c].date_created+"</a>"+
-                "<a>"+blog_lst[i_c].blog_category+"</a>"+
+                "<a>"+blog_lst[i_b].date_created+"</a>"+
+                "<a>"+blog_lst[i_b].blog_category+"</a>"+
               "</div>"+
-              "<div class='description'>"+blog_lst[i_c].blog_content.slice(0,150)+
+              "<div class='description'>"+blog_lst[i_b].blog_content.slice(0,150)+"..."+
               "</div>"+
               "<div class='extra'>"+
-                "<div class='ui right floated primary button' onclick=blog_full("+blog_lst[i_c].blog_id+")>"+
+                "<div class='ui right floated primary button' onclick=blog_full("+blog_lst[i_b].blog_id+")>"+
                   "Read more"+
                   "<i class='right chevron icon'></i>"+
                 "</div>"+
                 "<img src='https://semantic-ui.com/examples/assets/images/wireframe/square-image.png' class='ui circular avatar image'>"+
-                 blog_lst[i_c].published_by.name+
+                 "<a onclick=fetch_user_profile("+blog_lst[i_b].user_id+")>"+blog_lst[i_b].published_by.name+"</a>"+
               "</div>"+
             "</div>"+
           "</div>";
-          i_c++;
+          i_b++;
         }
         blg.innerHTML = items;
       } else {
         console.log(fetchblogs.responseText);
         document.getElementById("blog_loader").className = "hidden";
         blg.innerHTML = 'No more blogs available';
+        document.getElementById("fetch_blog_btn").className = "transition hidden";
       }
     }
   }
@@ -137,44 +152,44 @@ function fetch_blogs() {
 };
 
 function fetch_blog_s() {
-  if(i_c>=n_comment){
+  if(i_b>=n_blogs){
     items+="<div>No More Blogs available.....</div>"
     blg.innerHTML = items;
     document.getElementById("fetch_blog_btn").className = "transition hidden";
   }else{
     var x;
-    if(n_comment-10>=0){
+    if(n_blogs-10>=0){
       x=10;
-    }else x=n_comment%10;
-    while(i_c<n_comment&&x--){
+    }else x=n_blogs%10;
+    while(i_b<n_blogs&&x--){
       items+="<div class='item'>"+
         "<div class='ui small image'>"+
-          "<img src='../category/"+blog_lst[i_c].blog_category+".jpg'>"+
+          "<img src='../category/"+blog_lst[i_b].blog_category+".jpg'>"+
         "</div>"+
         "<div class='content'>"+
-          "<a class='header' onclick=blog_full("+blog_lst[i_c].blog_id+")>"+blog_lst[i_c].blog_title+"</a>"+
+          "<a class='header' onclick=blog_full("+blog_lst[i_b].blog_id+")>"+blog_lst[i_b].blog_title+"</a>"+
           "<div class='meta'>"+
-            "<a>"+blog_lst[i_c].date_created+"</a>"+
-            "<a>"+blog_lst[i_c].blog_category+"</a>"+
+            "<a>"+blog_lst[i_b].date_created+"</a>"+
+            "<a>"+blog_lst[i_b].blog_category+"</a>"+
           "</div>"+
-          "<div class='description'>"+blog_lst[i_c].blog_content.slice(0,150)+
+          "<div class='description'>"+blog_lst[i_b].blog_content.slice(0,150)+
           "</div>"+
           "<div class='extra'>"+
-            "<div class='ui right floated primary button' onclick=blog_full("+blog_lst[i_c].blog_id+")>"+
+            "<div class='ui right floated primary button' onclick=blog_full("+blog_lst[i_b].blog_id+")>"+
               "Read more"+
               "<i class='right chevron icon'></i>"+
             "</div>"+
             "<img src='https://semantic-ui.com/examples/assets/images/wireframe/square-image.png' class='ui circular avatar image'>"+
-             blog_lst[i_c].published_by.name+
+             "<a onclick=fetch_user_profile("+blog_lst[i_b].user_id+")>"+blog_lst[i_b].published_by.name+"</a>"+
           "</div>"+
         "</div>"+
       "</div>";
-      i_c++;
+      i_b++;
     }
     blg.innerHTML = items;
   }
 
-}
+};
 
 function fetch_blog() {
   var fetchblog = new XMLHttpRequest();
@@ -207,7 +222,7 @@ function fetch_blog() {
           "<div class='ui huge header' style='font-size:7em'>"+blog_lst[0].blog_title+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].blog_category+"</span>"+"</div>"+
           "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].date_created+"</span>"+"</div>"+
-          "<div class='ui huge header'>"+"<span class='tagline'>"+blog_lst[0].published_by.name+"</span>"+"</div>"+
+          "<div class='ui huge header'>"+"<a class='tagline' onclick=fetch_user_profile("+blog_lst[i_b].user_id+")>"+blog_lst[0].published_by.name+"</a>"+"</div>"+
         "</div>"+
         "<div class='content'>"+
           "<div class='description ui text segment' style='border-radius:0;'>"+
@@ -243,7 +258,7 @@ function fetch_blog() {
 
           "<div class='ui fluid large transparent left icon input' style='margin:0 1em'>"+
             "<i class='heart outline icon'></i>"+
-            "<input id='commented' type='text' onkeypress='handle(event)' placeholder='Add Comment...'>"+
+            "<input id='commented' type='text' onclick='show_comments()' onkeypress='handle(event)' placeholder='Add Comment...'>"+
           "</div>"+
 
         "</div>"+
@@ -408,13 +423,14 @@ function like(){
 };
 
 function add_comment(){
+
   var comm = document.getElementById('commented').value;
   comments = "<div class='comment'>"+
     "<a class='avatar'>"+
       "<img src='#'>"+
     "</a>"+
     "<div class='content'>"+
-      "<a class='author'>"+Cookies.get('hasura_username')+"</a>"+
+      "<a class='author'>"+Cookies.get('hasura_name')+"</a>"+
       "<div class='metadata'>"+
         "<span class='date'>"+"Now"+"</span>"+
       "</div>"+
@@ -430,10 +446,10 @@ function add_comment(){
         console.log("Comment Published Successfully");
         //console.log(fetchblogs.responseText);
         blogs_all=JSON.parse(this.responseText);
-
+        current_c_count++;
         document.getElementById('comment_s').innerHTML = comments;
-        document.getElementById('c_count').innerHTML = "<i class='comment icon'></i>"+current_c_count+1+" comments";
-        $('#comment_s').transition('slide down');
+        document.getElementById('c_count').innerHTML = "<i class='comment icon'></i>"+current_c_count+" comments";
+
       } else {
         console.log(this.responseText);
         alert("You must be sure to be login before comment and like any post");
@@ -504,6 +520,140 @@ function publish_blog() {
     			"blog_content": content
     		}]
     	}
+    }
+  ));
+};
+
+function fetch_ublogs() {
+  fetch_name(Cookies.get('fetch_user_id'));
+  var fetchublogs = new XMLHttpRequest();
+  fetchublogs.onreadystatechange = function () {
+    if (fetchublogs.readyState === XMLHttpRequest.DONE) {
+
+      if (fetchublogs.status === 200) {
+        document.getElementById('profile_name').innerHTML = Name;
+        blog_ulst=JSON.parse(this.responseText);
+        console.log(blog_ulst);
+        n_ublogs = blog_ulst.length;
+
+        var x;
+        if(n_ublogs-10>=0){
+          x=10;
+        }else x=n_ublogs%10;
+        while(i_ub<n_ublogs&&x--){
+          uitems+="<div class='item'>"+
+            "<div class='ui small image'>"+
+              "<img src='../category/"+blog_ulst[i_ub].blog_category+".jpg'>"+
+            "</div>"+
+            "<div class='content'>"+
+              "<a class='header' onclick=blog_full("+blog_ulst[i_ub].blog_id+")>"+blog_ulst[i_ub].blog_title+"</a>"+
+              "<div class='meta'>"+
+                "<a>"+blog_ulst[i_ub].date_created+"</a>"+
+                "<a>"+blog_ulst[i_ub].blog_category+"</a>"+
+              "</div>"+
+              "<div class='description'>"+blog_ulst[i_ub].blog_content.slice(0,150)+
+              "</div>"+
+              "<div class='extra'>"+
+                "<div class='ui right floated primary button' onclick=blog_full("+blog_ulst[i_ub].blog_id+")>"+
+                  "Read more"+
+                  "<i class='right chevron icon'></i>"+
+                "</div>"+
+                "<img src='https://semantic-ui.com/examples/assets/images/wireframe/square-image.png' class='ui circular avatar image'>"+
+                  "<a onclick=fetch_user_profile("+blog_ulst[i_ub].user_id+")>"+blog_ulst[i_ub].published_by.name+"</a>"+
+              "</div>"+
+            "</div>"+
+          "</div>";
+          i_ub++;
+        }
+        ublg.innerHTML = uitems;
+      } else {
+        console.log(fetchublogs.responseText);
+        //document.getElementById("blog_loader").className = "hidden";
+        ublg.innerHTML = 'No more blogs available';
+        document.getElementById("fetch_ublog_btn").className = "transition hidden";
+      }
+    }
+  }
+
+  fetchublogs.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', true);
+  fetchublogs.setRequestHeader('Content-type', 'application/json');
+  fetchublogs.send(JSON.stringify(
+    {
+      "type": "select",
+      "args": {
+        "table": "blogs",
+        "columns": ["*",
+                            {"name":"published_by","columns":["name"]}
+                   ],
+        "where": {"user_id":Cookies.get('fetch_user_id')},
+        "order_by": ["-date_created"]
+      }
+    }
+  ));
+};
+
+function fetch_ublog_s() {
+  if(i_ub>=n_ublogs){
+    uitems+="<div>No More Blogs available.....</div>"
+    ublg.innerHTML = uitems;
+    document.getElementById("fetch_ublog_btn").className = "transition hidden";
+  }else{
+    var x;
+    if(n_ublogs-10>=0){
+      x=10;
+    }else x=n_ublogs%10;
+    while(i_ub<n_ublogs&&x--){
+      uitems+="<div class='item'>"+
+        "<div class='ui small image'>"+
+          "<img src='../category/"+blog_ulst[i_ub].blog_category+".jpg'>"+
+        "</div>"+
+        "<div class='content'>"+
+          "<a class='header' onclick=blog_full("+blog_ulst[i_ub].blog_id+")>"+blog_ulst[i_ub].blog_title+"</a>"+
+          "<div class='meta'>"+
+            "<a>"+blog_ulst[i_ub].date_created+"</a>"+
+            "<a>"+blog_ulst[i_ub].blog_category+"</a>"+
+          "</div>"+
+          "<div class='description'>"+blog_ulst[i_ub].blog_content.slice(0,150)+
+          "</div>"+
+          "<div class='extra'>"+
+            "<div class='ui right floated primary button' onclick=blog_full("+blog_ulst[i_ub].blog_id+")>"+
+              "Read more"+
+              "<i class='right chevron icon'></i>"+
+            "</div>"+
+            "<img src='https://semantic-ui.com/examples/assets/images/wireframe/square-image.png' class='ui circular avatar image'>"+
+             "<a onclick=fetch_user_profile("+blog_ulst[i_ub].user_id+")>"+blog_ulst[i_ub].published_by.name+"</a>"+
+          "</div>"+
+        "</div>"+
+      "</div>";
+      i_ub++;
+    }
+    ublg.innerHTML = uitems;
+  }
+
+};
+
+function fetch_name(user_id) {
+  p_name = new XMLHttpRequest();
+  p_name.onreadystatechange = function () {
+    if (p_name.readyState === XMLHttpRequest.DONE) {
+      if (p_name.status === 200) {
+        console.log(this.responseText);
+        Name = JSON.parse(this.responseText)[0].name;
+      } else {
+        console.log(p_name.responseText);
+      }
+    }
+  }
+  p_name.open('POST', 'https://data.antecedent20.hasura-app.io/v1/query', false);
+  p_name.setRequestHeader('Content-type', 'application/json');
+  p_name.send(JSON.stringify(
+    {
+      "type": "select",
+      "args": {
+        "table": "user_profile",
+        "columns": ["*"],
+        "where": {"id":user_id}
+      }
     }
   ));
 };
