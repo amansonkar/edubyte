@@ -247,19 +247,19 @@ function fetch_blog() {
             "<div id='l_count' onclick='like()' class='right floated left aligned six wide column'>";
 
         if(like_flag){
-          item+="<a  class='right floated'>"+
+          item+="<a  class='right floated link'>"+
             "<i class='heart outline like icon'></i>"+current_l_count+" likes"+
           "</a>";
         }else{
-          item+="<span  class='right floated'>"+
+          item+="<span  class='right floated link'>"+
             "<i class='heart outline like icon'></i>"+current_l_count+" likes"+
           "</span>";
         }
         item+="</div>"+
 
             "<div onclick='show_comments()' class='left floated right aligned six wide column'>"+
-              "<a id='c_count'>"+
-                "<i class='comment icon'></i>"+current_c_count+" comments"+
+              "<a id='c_count' class='link'>"+
+                "<i class='comments outline icon'></i>"+current_c_count+" comments"+
               "</a>"+
             "</div>"+
 
@@ -284,7 +284,7 @@ function fetch_blog() {
           var hour=full_date[1];
           comments += "<div class='comment'>"+
             "<a class='avatar'>"+
-              "<img src='#'>"+
+              "<i class='comments outline icon'></i>"+
             "</a>"+
             "<div class='content'>"+
               "<a class='author'>"+blog_lst[0].comments[i].commented_by.name+"</a>"+
@@ -443,7 +443,7 @@ function add_comment(){
   var comm = document.getElementById('commented').value;
   comments = "<div class='comment'>"+
     "<a class='avatar'>"+
-      "<img src='#'>"+
+      "<i class='comments outline icon'></i>"+
     "</a>"+
     "<div class='content'>"+
       "<a class='author'>"+Cookies.get('hasura_name')+"</a>"+
