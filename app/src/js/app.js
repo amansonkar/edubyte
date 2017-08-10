@@ -11,13 +11,11 @@ var like_flag=0;
 var Name = "";
 
 function check_login() {
-  fetch_name(JSON.parse(Cookies.get('edubyte')).hasura_id);
-  Cookies.set('hasura_name',Name);
-  var logged_user = Cookies.get('hasura_name');
   var loggedin_user = Cookies.get('hasura_username');
   if(loggedin_user!=Cookies.get('nothing')){
-    var ttt = Name;
-    console.log(ttt);
+    fetch_name(JSON.parse(Cookies.get('edubyte')).hasura_id);
+    Cookies.set('hasura_name',Name);
+    var logged_user = Cookies.get('hasura_name');
     document.getElementById('auth_user_sec').innerHTML = "<div class='ui right floated header dropdown' style='color:white;margin:1.5rem 0'>"+
       "<div>"+"<i class='spy icon'></i>"+logged_user+"</div>"+
       "<div class='menu'>"+
