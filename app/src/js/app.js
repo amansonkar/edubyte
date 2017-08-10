@@ -236,7 +236,7 @@ function fetch_blog() {
           "<div class='ui huge header'>"+"<a onclick=fetch_user_profile("+blog_lst[i_b].user_id+")>"+blog_lst[0].published_by.name+"</a>"+"</div>"+
         "</div>"+
         "<div class='content'>"+
-          "<div class='description ui text segment' style='border-radius:0;font-size:1em'>"+
+          "<div class='description ui text segment' style='border-radius:0;font-size:2em'>"+
             "<p >"+blog_lst[0].blog_content+"</p>"+
           "</div>"+
         "</div>"+
