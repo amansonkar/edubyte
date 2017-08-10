@@ -9,12 +9,11 @@ function login_user() {
         //window.location.href = '/';
         Cookies.set('edubyte', login.responseText);
         Cookies.set('hasura_username', username);
-        console.log(Cookies.get('edubyte'));
-        alert('Login Successfully');
+        //console.log(Cookies.get('edubyte'));
+        //alert('Login Successfully');
         window.location.href = '#top';
       } else {
-
-        console.log('Login failed');
+        //console.log('Login failed');
         document.getElementById('error').innerHTML = 'Login Credentials are not Correct';
         document.getElementById('login_btn').value = 'Log In';
       }
@@ -26,7 +25,7 @@ function login_user() {
   login.open('POST', 'https://auth.antecedent20.hasura-app.io/login', false);
   login.withCredentials = true;
   login.setRequestHeader('Content-type', 'application/json');
-  console.log(JSON.stringify({ username: username, password: password }));
+  //console.log(JSON.stringify({ username: username, password: password }));
   login.send(JSON.stringify({ username: username, password: password }));
 };
 
@@ -36,12 +35,12 @@ function register_user() {
   register.onreadystatechange = function () {
     if (register.readyState === XMLHttpRequest.DONE) {
       if (register.status === 200) {
-        console.log(register.responseText);
+        //console.log(register.responseText);
         var list = JSON.parse(register.responseText);
         add_user_profile(list,name);
         window.location.reload();
       } else {
-        console.log('Register failed');
+        //console.log('Register failed');
         document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
         document.getElementById('register_btn').value = 'Register';
       }
@@ -65,10 +64,10 @@ function add_user_profile(list,name) {
   update.onreadystatechange = function () {
     if (update.readyState === XMLHttpRequest.DONE) {
       if (update.status === 200) {
-        alert('Registered Successfully');
-        console.log(update.responseText);
+        //alert('Registered Successfully');
+        //console.log(update.responseText);
       } else {
-        console.log('Update failed');
+        //console.log('Update failed');
         document.getElementById('error').innerHTML = 'Something occur wrong...Please try again';
         document.getElementById('register_btn').value = 'Register';
         alert("register with different email and mobile");

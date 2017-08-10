@@ -40,13 +40,13 @@ function log_out() {
   logout_req.onreadystatechange = function () {
     if (logout_req.readyState === XMLHttpRequest.DONE) {
       if (logout_req.status === 200) {
-        alert('You have logged out Successfully.')
-        console.log(logout_req.responseText);
+        //alert('You have logged out Successfully.')
+        //console.log(logout_req.responseText);
         Cookies.remove('edubyte');
         Cookies.remove('hasura_username');
         window.location.reload();
       } else {
-        console.log('Request failed');
+        //console.log('Request failed');
       }
     }
   }
@@ -91,7 +91,7 @@ function fetch_blogs() {
         //console.log(fetchblogs.responseText);
 
         blog_lst=JSON.parse(this.responseText);
-        console.log(blog_lst);
+        //console.log(blog_lst);
         n_blogs = blog_lst.length;
 
         var x;
@@ -129,7 +129,7 @@ function fetch_blogs() {
         }
         blg.innerHTML = items;
       } else {
-        console.log(fetchblogs.responseText);
+        //console.log(fetchblogs.responseText);
         document.getElementById("blog_loader").className = "hidden";
         blg.innerHTML = 'No more blogs available';
         document.getElementById("fetch_blog_btn").className = "transition hidden";
@@ -204,10 +204,10 @@ function fetch_blog() {
   fetchblog.onreadystatechange = function () {
     if (fetchblog.readyState === XMLHttpRequest.DONE) {
       if (fetchblog.status === 200) {
-        console.log(fetchblog.responseText);
+        //console.log(fetchblog.responseText);
         var item;
         blog_full=JSON.parse(this.responseText);
-        console.log(blog_full);
+        //console.log(blog_full);
         var blog_lst = blog_full;
         current_c_count=blog_lst[0].comments.length;
         current_l_count = blog_lst[0].liked_by.length;
@@ -299,8 +299,9 @@ function fetch_blog() {
         }
         document.getElementById('comment_s').innerHTML = comments;
       } else {
-        console.log(fetchblog.responseText);
-        alert('some error occured');
+        //console.log(fetchblog.responseText);
+        alert('Some error occured in fetching blog.Please refresh');
+        window.location.reload();
       }
     }
   }
@@ -357,14 +358,14 @@ function like(){
     like_req.onreadystatechange = function () {
       if (like_req.readyState === XMLHttpRequest.DONE) {
         if (like_req.status === 200) {
-          console.log("like count Successfully");
-          console.log(like_req.responseText);
+          //console.log("like count Successfully");
+          //console.log(like_req.responseText);
           like_e.innerHTML = "<a  class='right floated'>"+
             "<i class='heart outline like icon'></i>"+current_l_count+" likes"+
           "</a>";
           like_flag=1;
         } else {
-          console.log(this.responseText);
+          //console.log(this.responseText);
           alert("You must be sure to be login before comment and like any post");
         }
       }
@@ -400,14 +401,14 @@ function like(){
     like_req.onreadystatechange = function () {
       if (like_req.readyState === XMLHttpRequest.DONE) {
         if (like_req.status === 200) {
-          console.log("like minus-count Successfully");
-          console.log(like_req.responseText);
+          //console.log("like minus-count Successfully");
+          //console.log(like_req.responseText);
           like_e.innerHTML = "<span  class='right floated'>"+
             "<i class='heart outline like icon'></i>"+current_l_count+" likes"+
           "</span>";
           like_flag=0;
         } else {
-          console.log(this.responseText);
+          //console.log(this.responseText);
           alert("You must be sure to be login before comment and like any post");
         }
       }
@@ -458,7 +459,7 @@ function add_comment(){
   comment_req.onreadystatechange = function () {
     if (comment_req.readyState === XMLHttpRequest.DONE) {
       if (comment_req.status === 200) {
-        console.log("Comment Published Successfully");
+        //console.log("Comment Published Successfully");
         //console.log(fetchblogs.responseText);
         blogs_all=JSON.parse(this.responseText);
         current_c_count++;
@@ -466,7 +467,7 @@ function add_comment(){
         document.getElementById('c_count').innerHTML = "<i class='comment icon'></i>"+current_c_count+" comments";
 
       } else {
-        console.log(this.responseText);
+        //console.log(this.responseText);
         alert("You must be sure to be login before comment and like any post");
       }
     }
@@ -503,11 +504,11 @@ function publish_blog() {
   publish.onreadystatechange = function () {
     if (publish.readyState === XMLHttpRequest.DONE) {
       if (publish.status === 200) {
-        alert("Blog Published Successfully");
+        //alert("Blog Published Successfully");
         blogs_all=JSON.parse(this.responseText);
         window.location.reload();
       } else {
-        console.log(this.responseText);
+        //console.log(this.responseText);
         document.getElementById("blog_loader").className = "hidden";
         blg.innerHTML = 'No more blogs available';
       }
@@ -548,7 +549,7 @@ function fetch_ublogs() {
       if (fetchublogs.status === 200) {
         document.getElementById('profile_name').innerHTML = Name;
         blog_ulst=JSON.parse(this.responseText);
-        console.log(blog_ulst);
+        //console.log(blog_ulst);
         n_ublogs = blog_ulst.length;
 
         var x;
@@ -586,7 +587,7 @@ function fetch_ublogs() {
         }
         ublg.innerHTML = uitems;
       } else {
-        console.log(fetchublogs.responseText);
+        //console.log(fetchublogs.responseText);
         //document.getElementById("blog_loader").className = "hidden";
         ublg.innerHTML = 'No more blogs available';
         document.getElementById("fetch_ublog_btn").className = "transition hidden";
@@ -660,10 +661,10 @@ function fetch_name(user_id) {
   p_name.onreadystatechange = function () {
     if (p_name.readyState === XMLHttpRequest.DONE) {
       if (p_name.status === 200) {
-        console.log(this.responseText);
+        //console.log(this.responseText);
         Name = JSON.parse(this.responseText)[0].name;
       } else {
-        console.log(p_name.responseText);
+        //console.log(p_name.responseText);
       }
     }
   }
