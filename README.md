@@ -4,6 +4,8 @@ Demo Video Link :  https://youtu.be/5hzjCEm95C8
 
 Hasura is a platform to build & deploy powerful app backends. Instant APIs for data, auth & file handling (powered by Postgres) and easy deployment workflows.
 
+Know more about Hasura : https://hasura.io/
+
 # Quickstart - Build your own Docker image#
 
 Build the Docker image using the following command
