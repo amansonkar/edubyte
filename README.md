@@ -1,3 +1,7 @@
+This is our new app("eduByte") which we built during an internship with Hasura using nodejs and JSON APIs provided by Hasura. It is a simple blogging app on which any user can read and write articles. It also gives the user an option of commenting on any article. This video goes through the functionalities of the app like a user manual.
+
+Demo Video Link :  https://youtu.be/5hzjCEm95C8
+
 # Quickstart - Build your own Docker image#
 
 Build the Docker image using the following command
