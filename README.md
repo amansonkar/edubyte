@@ -2,6 +2,8 @@ This is our new app("eduByte") which we built during an internship with Hasura u
 
 Demo Video Link :  https://youtu.be/5hzjCEm95C8
 
+Hasura is a platform to build & deploy powerful app backends. Instant APIs for data, auth & file handling (powered by Postgres) and easy deployment workflows.
+
 # Quickstart - Build your own Docker image#
 
 Build the Docker image using the following command
